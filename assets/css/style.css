@@ -2449,7 +2449,6 @@ hr {
 }
 @media (max-width: 991px) {
   br,
-  .cs_vector_shape_4,
   .cs_counter_shape_3,
   .cs_counter_shape_4 {
     display: none;
@@ -4065,21 +4064,7 @@ hr {
   right: 140px;
   transform: rotate(90deg);
 }
-.cs_card.cs_style_1 .cs_vector_shape_3 {
-  width: max-content;
-  top: -20px;
-  left: -110px;
-  transform: rotate(120deg);
-  animation: circular-rotation 15s linear infinite;
-  animation-direction: reverse;
-}
-.cs_card.cs_style_1 .cs_vector_shape_4 {
-  width: max-content;
-  left: 40%;
-  bottom: 140px;
-  transform: translateX(-40%);
-  animation: circular-rotation 20s linear infinite;
-}
+
 .cs_card.cs_style_1 .cs_shadow {
   width: 81px;
   height: 81px;
@@ -6167,5 +6152,226 @@ Pricing controller
   }
 }
 
+/*--------------------------------------
+ Testimonial Card Layout Improvements
+----------------------------------------*/
+.cs_testimonial.cs_style_1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.3s ease;
+}
 
+.cs_testimonial.cs_style_1:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(140, 180, 58, 0.2);
+}
 
+.cs_testimonial.cs_style_1 blockquote {
+  flex-grow: 1;
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.cs_testimonial.cs_style_1 .cs_rating {
+  margin-top: auto;
+  padding-top: 15px;
+}
+
+/*--------------------------------------
+ Responsive Testimonial Card Styles
+----------------------------------------*/
+@media (max-width: 768px) {
+  .cs_testimonial.cs_style_1 {
+    min-height: 600px !important; /* Taller on mobile */
+    padding: 30px 20px;
+  }
+  
+  .cs_testimonial.cs_style_1 blockquote {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  
+  .cs_testimonial.cs_style_1 .cs_avatar {
+    margin-bottom: 25px;
+  }
+  
+  .cs_testimonial.cs_style_1 .cs_avatar_info h3 {
+    font-size: 18px;
+  }
+  
+  .cs_testimonial.cs_style_1 .cs_avatar_info p {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cs_testimonial.cs_style_1 {
+    min-height: 650px !important; /* Even taller on small mobile */
+    padding: 25px 15px;
+  }
+  
+  .cs_testimonial.cs_style_1 blockquote {
+    font-size: 15px;
+    line-height: 1.7;
+  }
+  
+  .cs_testimonial.cs_style_1 .cs_avatar {
+    margin-bottom: 20px;
+  }
+}
+
+/*--------------------------------------
+ Mobile Column Reordering for Business Solution Section
+----------------------------------------*/
+@media (max-width: 768px) {
+  .cs_mobile_order_1 {
+    order: 1 !important;
+  }
+  
+  .cs_mobile_order_2 {
+    order: 2 !important;
+  }
+  
+  /* Ensure proper spacing on mobile */
+  .cs_card_thumbnail {
+    margin-top: 30px;
+  }
+}
+
+/*--------------------------------------
+ Carousel Image Size Improvements
+----------------------------------------*/
+.cs_image_carousel {
+  width: 100% !important;
+  height: 700px !important; /* Increased from 600px */
+  max-width: 800px !important;
+  margin: 0 auto;
+}
+
+.cs_image_carousel .carousel-image {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  transition: opacity 1s ease-in-out !important;
+}
+
+/* Make hero image bigger */
+.cs_hero_thumbnail img {
+  max-width: 900px !important; /* Increased from 800px */
+  width: 100% !important;
+  height: auto !important;
+  margin: 0 auto !important;
+  display: block !important;
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 768px) {
+  .cs_image_carousel {
+    height: 500px !important;
+    max-width: 100% !important;
+  }
+  
+  .cs_hero_thumbnail img {
+    max-width: 100% !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .cs_image_carousel {
+    height: 400px !important;
+  }
+}
+
+/*--------------------------------------
+ Business Solution Section Image Alignment Fix
+----------------------------------------*/
+.cs_card_thumbnail.cs_center {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.cs_image_carousel {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.cs_image_carousel .carousel-image {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Ensure the image container is centered */
+.cs_mobile_order_2 .cs_card_thumbnail {
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* More specific overrides to ensure no spacing */
+section .cs_card .cs_card_thumbnail {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+section .cs_card .cs_image_carousel {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Force remove any top margin or padding */
+.cs_card_thumbnail.cs_center[style*="display: flex"] {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* Override any Bootstrap or default spacing */
+.row .cs_card_thumbnail {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Force remove any remaining spacing with maximum specificity */
+body .cs_card_thumbnail.cs_center {
+  margin: 0 !important;
+  padding: 0 !important;
+  top: 0 !important;
+}
+
+body .cs_image_carousel {
+  margin: 0 !important;
+  padding: 0 !important;
+  top: 0 !important;
+}
+
+/* Override any potential flexbox spacing */
+.cs_card_thumbnail.cs_center[style*="display: flex"] {
+  margin: 0 !important;
+  padding: 0 !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* Ensure carousel images have no spacing */
+.cs_image_carousel img {
+  margin: 0 !important;
+  padding: 0 !important;
+  top: 0 !important;
+}
+
+/* Target the section container to remove any spacing */
+section:has(.cs_card_thumbnail) {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Final override for the specific Business Solution Section */
+section .cs_card.cs_style_1.cs_type_6 .cs_card_thumbnail {
+  margin: 0 !important;
+  padding: 0 !important;
+  top: 0 !important;
+}

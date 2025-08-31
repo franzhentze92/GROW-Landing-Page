@@ -34,7 +34,7 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     exit;
 }
 
-// Set recipient email (change this to your email)
+// Set recipient email
 $to = 'info@ntsgrow.com';
 
 // Set email subject
