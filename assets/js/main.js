@@ -339,22 +339,24 @@
     $('.cs_pricing_control a').on('click', function (e) {
       $(this).parents('li').addClass('active').siblings().removeClass('active');
       e.preventDefault();
-      currentAttrValue = $(this).attr('href');
-      if (currentAttrValue !== 'yearly') {
+      currentAttrValue = $(this).attr('href').replace('#', '');
+      console.log('Pricing toggle clicked:', currentAttrValue);
+      
+      if (currentAttrValue === 'monthly') {
         // Show monthly plans, hide yearly plans
         $('.cs_pricing_table').each(function() {
-          if ($(this).find('.yearlyText').length > 0) {
-            $(this).hide();
-          } else {
+          if ($(this).find('.monthlyText').length > 0) {
             $(this).show();
+          } else if ($(this).find('.yearlyText').length > 0) {
+            $(this).hide();
           }
         });
-      } else {
+      } else if (currentAttrValue === 'yearly') {
         // Show yearly plans, hide monthly plans
         $('.cs_pricing_table').each(function() {
           if ($(this).find('.yearlyText').length > 0) {
             $(this).show();
-          } else {
+          } else if ($(this).find('.monthlyText').length > 0) {
             $(this).hide();
           }
         });
@@ -408,3 +410,5 @@
     });
   }
 })(jQuery); // End of use strict
+
+

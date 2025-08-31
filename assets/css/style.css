@@ -332,7 +332,7 @@ textarea {
 }
 
 /*--------------------------------------------------------------
-  04. Preloader
+  04. Preloader - Farming Theme
 ----------------------------------------------------------------*/
 .cs_preloader {
   position: fixed;
@@ -343,68 +343,23 @@ textarea {
   top: 0;
   width: 100%;
   height: 100vh;
+  background-color: #ffffff;
 }
 
 .cs_preloader_in {
-  width: 110px;
-  height: 110px;
-  position: relative;
+  width: 60px;
+  height: 60px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #8cb43a;
   border-radius: 50%;
-}
-.cs_preloader_in:before, .cs_preloader_in:after {
-  content: "";
-  border-width: 2px;
-  border-style: solid;
-  border-radius: 50%;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-}
-.cs_preloader_in:after {
-  border-color: transparent;
-  border-top-color: var(--purple-color);
-  border-bottom-color: var(--purple-color);
-  opacity: 0.8;
-  animation: spin 1s ease-in-out infinite;
-  z-index: 2;
-}
-.cs_preloader_in:before {
-  border-color: var(--purple-color);
-  opacity: 0.2;
-}
-.cs_preloader_in span {
-  display: inline-block;
-  width: 50px;
-  height: 50px;
-  background-color: var(--purple-color);
-  border-radius: 50%;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%) scale(0);
-  animation: bubble-animation 2s linear infinite;
-}
-.cs_preloader_in span:nth-child(2) {
-  animation-delay: 1s;
+  animation: spin 1s linear infinite;
 }
 
 @keyframes spin {
-  0% {
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
-  100% {
-    transform: translate(-50%, -50%) rotate(360deg);
-  }
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
-@keyframes bubble-animation {
-  100% {
-    transform: translate(-50%, -50%) scale(1);
-    opacity: 0;
-  }
-}
+
 /*--------------------------------------------------------------
   05. Spacing
 ----------------------------------------------------------------*/
@@ -4678,9 +4633,18 @@ hr {
 .cs_pricing_table.cs_style_1 p {
   transition: all 0.3s ease;
 }
-.cs_pricing_table.cs_style_1 .yearlyPrice,
+/* Hide yearly text by default, but show it when the yearly card is displayed */
+.cs_pricing_table.cs_style_1 .yearlyPrice {
+  display: none;
+}
+
 .cs_pricing_table.cs_style_1 .yearlyText {
   display: none;
+}
+
+/* Show yearly text when yearly cards are visible */
+.cs_pricing_table.cs_style_1:not([style*="display: none"]) .yearlyText {
+  display: inline !important;
 }
 .cs_pricing_table.cs_style_1 .cs_pricing_feature_list li {
   margin-bottom: 10px;
@@ -6172,3 +6136,36 @@ Pricing controller
   transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(140, 180, 58, 0.15);
 }
+
+/*--------------------------------------
+ Hero Image Styles
+----------------------------------------*/
+.cs_hero_thumbnail img {
+  width: 100%;
+  height: auto;
+  border-radius: 15px;
+  max-width: 800px; /* Increased max-width for bigger image */
+  margin: 0 auto; /* Center the image */
+}
+
+/* Responsive sizing for the hero image */
+@media (max-width: 1200px) {
+  .cs_hero_thumbnail img {
+    max-width: 700px;
+  }
+}
+
+@media (max-width: 992px) {
+  .cs_hero_thumbnail img {
+    max-width: 600px;
+  }
+}
+
+@media (max-width: 768px) {
+  .cs_hero_thumbnail img {
+    max-width: 500px;
+  }
+}
+
+
+
