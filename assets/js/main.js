@@ -33,9 +33,29 @@
     return $(selector).length > 0;
   };
 
-  $(window).on('load', function () {
-    preloader();
-  });
+  // Hide preloader when DOM is ready (not full window load), so the page shows
+  // without waiting for every image and video. Min 400ms so spinner is visible;
+  // max 4s fallback so we never wait forever.
+  (function () {
+    var done = false;
+    var minMs = 400;
+    var maxMs = 4000;
+
+    function hide() {
+      if (done) return;
+      done = true;
+      preloader();
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function () {
+        setTimeout(hide, minMs);
+      });
+    } else {
+      setTimeout(hide, minMs);
+    }
+    setTimeout(hide, maxMs);
+  })();
 
   $(function () {
     mainNav();
@@ -65,8 +85,7 @@
    01. Preloader
   --------------------------------------------------------------*/
   function preloader() {
-    $('.cs_preloader').fadeOut();
-    $('cs_preloader_in').delay(150).fadeOut('slow');
+    $('.cs_preloader').fadeOut(300);
   }
 
   /*--------------------------------------------------------------
@@ -410,5 +429,72 @@
     });
   }
 })(jQuery); // End of use strict
+
+// Typing Effect for Hero Section
+document.addEventListener('DOMContentLoaded', function() {
+  const rotatingText = document.querySelector('.rotating-text');
+  if (rotatingText) {
+    const texts = [
+      'Farm Management',
+      'Soil & Crop Health', 
+      'Expert Knowledge',
+      'Agri Advice'
+    ];
+    
+    let currentIndex = 1; // Start from second text since first is already displayed
+    let currentText = '';
+    let charIndex = 0;
+    
+    function typeText() {
+      if (charIndex < texts[currentIndex].length) {
+        currentText += texts[currentIndex].charAt(charIndex);
+        rotatingText.textContent = currentText;
+        charIndex++;
+        setTimeout(typeText, 50); // Typing speed
+      } else {
+        // Wait before starting to delete
+        setTimeout(deleteText, 1000);
+      }
+    }
+    
+    function deleteText() {
+      if (currentText.length > 0) {
+        currentText = currentText.slice(0, -1);
+        rotatingText.textContent = currentText;
+        setTimeout(deleteText, 30); // Deleting speed
+      } else {
+        // Move to next text
+        currentIndex = (currentIndex + 1) % texts.length;
+        charIndex = 0;
+        setTimeout(typeText, 200); // Pause before typing next text
+      }
+    }
+    
+    // Start the typing effect after 2 seconds
+    setTimeout(() => {
+      typeText();
+    }, 2000);
+  }
+});
+
+// Expandable Features Function
+function toggleExpand(elementId) {
+  const element = document.getElementById(elementId);
+  const icon = document.getElementById(elementId.replace('-more', '-icon'));
+  
+  if (!element || !icon) {
+    return;
+  }
+  
+  if (element.style.display === 'none' || element.style.display === '') {
+    element.style.display = 'block';
+    icon.classList.remove('fa-plus');
+    icon.classList.add('fa-minus');
+  } else {
+    element.style.display = 'none';
+    icon.classList.remove('fa-minus');
+    icon.classList.add('fa-plus');
+  }
+}
 
 

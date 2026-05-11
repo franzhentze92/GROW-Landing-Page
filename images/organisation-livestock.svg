@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="520" viewBox="0 0 800 520" role="img" aria-labelledby="title desc">
+  <title id="title">Livestock and aquaculture illustration</title>
+  <desc id="desc">Pasture with herd silhouette and pond with fish, representing Organisation livestock and aquaculture modules</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e8f4ea"/>
+      <stop offset="100%" stop-color="#f5f7f0"/>
+    </linearGradient>
+    <linearGradient id="grass" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#a8cf6b"/>
+      <stop offset="100%" stop-color="#8cb43a"/>
+    </linearGradient>
+    <linearGradient id="water" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#9ec9e8"/>
+      <stop offset="100%" stop-color="#6ba8cf"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="520" rx="16" fill="url(#sky)"/>
+  <!-- divider -->
+  <line x1="400" y1="60" x2="400" y2="460" stroke="#c5d4b8" stroke-width="2" stroke-dasharray="8 6"/>
+  <!-- Land panel -->
+  <ellipse cx="200" cy="420" rx="180" ry="75" fill="url(#grass)"/>
+  <ellipse cx="200" cy="400" rx="130" ry="45" fill="#7a9e32" opacity="0.35"/>
+  <g fill="#3d4a2e" transform="translate(85 240)">
+    <ellipse cx="115" cy="100" rx="75" ry="44"/>
+    <ellipse cx="35" cy="98" rx="28" ry="26"/>
+    <rect x="165" y="78" width="40" height="12" rx="5"/>
+    <rect x="70" y="130" width="14" height="40" rx="3"/>
+    <rect x="110" y="130" width="14" height="40" rx="3"/>
+    <rect x="150" y="130" width="14" height="40" rx="3"/>
+    <rect x="182" y="130" width="14" height="38" rx="3"/>
+  </g>
+  <text x="200" y="495" text-anchor="middle" fill="#5a6b45" font-family="system-ui,sans-serif" font-size="16" font-weight="600">Livestock &amp; herd</text>
+  <!-- Water panel -->
+  <ellipse cx="600" cy="400" rx="175" ry="70" fill="url(#water)" opacity="0.95"/>
+  <ellipse cx="600" cy="385" rx="120" ry="40" fill="#5a93b8" opacity="0.45"/>
+  <!-- simple fish shapes -->
+  <g fill="#2d4a5c" opacity="0.85">
+    <ellipse cx="520" cy="360" rx="28" ry="14" transform="rotate(-8 520 360)"/>
+    <polygon points="548,360 540,352 540,368"/>
+    <ellipse cx="660" cy="330" rx="32" ry="15" transform="rotate(12 660 330)"/>
+    <polygon points="630,330 638,322 638,338"/>
+    <ellipse cx="590" cy="420" rx="24" ry="11"/>
+    <polygon points="612,420 606,414 606,426"/>
+  </g>
+  <!-- pond rim / tank hint -->
+  <ellipse cx="600" cy="400" rx="178" ry="72" fill="none" stroke="#4a7a9a" stroke-width="3" opacity="0.5"/>
+  <text x="600" y="495" text-anchor="middle" fill="#3d5c6e" font-family="system-ui,sans-serif" font-size="16" font-weight="600">Aquaculture &amp; production units</text>
+</svg>

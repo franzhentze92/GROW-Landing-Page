@@ -1,3 +1,19 @@
+.cs_mt_30 {
+  margin-top: 30px;
+}
+
+@media (max-width: 991px) {
+  .cs_mt_md_40 {
+    margin-top: 40px;
+  }
+}
+
+@media (max-width: 767px) {
+  .cs_mt_sm_50 {
+    margin-top: 50px;
+  }
+}
+
 /*--------------------------------------------------------------
 >> TABLE OF CONTENTS:
 ----------------------------------------------------------------
@@ -146,7 +162,7 @@
   --heading-color: #0A0A10;
   --body-color: #6C6C6C;
   --purple-color: #8cb43a;
-  --accent-color: rgba(140,180,58,1);
+  --accent-color: #8cb43a;
   --border-color: #CACACA;
   --gray-color: #F6F3FE;
   --gray2-color: #A3A2A3;
@@ -347,19 +363,56 @@ textarea {
 }
 
 .cs_preloader_in {
-  width: 60px;
-  height: 60px;
-  border: 4px solid #f3f3f3;
-  border-top: 4px solid #8cb43a;
+  width: 72px;
+  height: 72px;
+  position: relative;
+}
+
+.cs_preloader_in::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('../img/wheat-loader.svg') center / contain no-repeat;
+  animation: loader-sway 1.4s ease-in-out infinite;
+}
+
+.cs_preloader_in::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -12px;
+  width: 42px;
+  height: 12px;
+  background: rgba(0, 0, 0, 0.12);
+  filter: blur(6px);
   border-radius: 50%;
-  animation: spin 1s linear infinite;
+  transform: translateX(-50%);
+  animation: loader-shadow 1.4s ease-in-out infinite;
 }
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+@keyframes loader-sway {
+  0% {
+    transform: rotate(-4deg) scale(0.96);
+  }
+  50% {
+    transform: rotate(8deg) scale(1.03);
+  }
+  100% {
+    transform: rotate(-4deg) scale(0.96);
+  }
 }
 
+@keyframes loader-shadow {
+  0%,
+  100% {
+    transform: translateX(-50%) scale(0.9);
+    opacity: 0.35;
+  }
+  50% {
+    transform: translateX(-50%) scale(1.05);
+    opacity: 0.15;
+  }
+}
 /*--------------------------------------------------------------
   05. Spacing
 ----------------------------------------------------------------*/
@@ -2004,6 +2057,7 @@ hr {
   gap: 8px;
   position: relative;
   overflow: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 .cs_btn.cs_style_1 > * {
   position: relative;
@@ -2044,6 +2098,16 @@ hr {
 .cs_btn.cs_style_1:hover::before {
   bottom: 0;
   transform: translate(-50%, 0) scaleX(1.5) scaleY(1.5);
+}
+.cs_btn.cs_style_1.cs_purple_bg:hover {
+  background-color: #0A0A10 !important;
+}
+.cs_btn.cs_style_1.cs_heading_bg:hover {
+  background-color: var(--purple-color) !important;
+}
+.cs_btn.cs_style_1.cs_outline:hover {
+  background-color: var(--purple-color) !important;
+  color: var(--white-color) !important;
 }
 .cs_btn.cs_style_1:hover i {
   transform: translateX(20px);
@@ -2187,10 +2251,21 @@ hr {
   transform: translate(-50%, -50%) scale(1);
   opacity: 1;
 }
+.cs_scrollup.cs_accent_hover:hover::before {
+  background-color: var(--accent-color);
+}
 
 /*-------------------------------
  Section Heading
 ---------------------------------*/
+.cs_section_heading.cs_style_1 .cs_section_subtitle.cs_subtitle_block {
+  display: block;
+  max-width: 52rem;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.55;
+}
+
 .cs_section_heading.cs_style_1 .cs_section_subtitle {
   display: inline-flex;
   align-items: center;
@@ -2515,6 +2590,77 @@ hr {
 .cs_slider_gap_24 .slick-list {
   margin-left: -12px;
   margin-right: -12px;
+}
+
+.cs_slider_allow_overflow .slick-list {
+  overflow: visible;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.cs_slider_nav {
+  position: absolute;
+  top: -70px;
+  right: 0;
+  display: flex;
+  gap: 12px;
+  z-index: 2;
+}
+
+.cs_slider_arrow {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px solid #8cb43a;
+  background-color: #fff;
+  color: #8cb43a;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  transition: all 0.25s ease;
+}
+
+.cs_slider_arrow:hover,
+.cs_slider_arrow:focus {
+  background-color: #8cb43a;
+  color: #fff;
+  outline: none;
+}
+
+.cs_slider_arrow:focus-visible {
+  box-shadow: 0 0 0 3px rgba(140, 180, 58, 0.35);
+}
+
+@media (max-width: 991px) {
+  .cs_slider_nav {
+    position: static;
+    justify-content: center;
+    margin-top: 24px;
+  }
+}
+
+.cs_team_grid .cs_card_thumbnail {
+  height: 320px;
+  overflow: hidden;
+}
+
+.cs_team_grid .cs_card_thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 1199px) {
+  .cs_team_grid .cs_card_thumbnail {
+    height: 280px;
+  }
+}
+
+@media (max-width: 767px) {
+  .cs_team_grid .cs_card_thumbnail {
+    height: 240px;
+  }
 }
 
 .cs_slider_gap_30 .slick-slide {
@@ -3504,6 +3650,7 @@ hr {
 }
 .cs_hero.cs_style_1 .cs_hero_subtitle {
   margin-bottom: 45px;
+  font-size: 24px;
 }
 .cs_hero.cs_style_1 .cs_btn_group {
   display: flex;
@@ -3622,7 +3769,7 @@ hr {
   animation: spinAnimation 15s linear infinite;
 }
 .cs_hero.cs_style_1.cs_type_3 {
-  padding: 220px 0px 210px;
+  padding: 120px 0px 100px;
 }
 .cs_hero.cs_style_1.cs_type_3 .cs_hero_text {
   max-width: 640px;
@@ -3644,16 +3791,50 @@ hr {
   min-width: 100%;
   margin-left: 0;
   filter: none;
-  border-radius: 15px;
+  border-radius: 28px;
+  overflow: visible;
+}
+/* Hero carousel: slides range ~1.93–1.99:1; cover fills frame. Not affected by global .cs_image_carousel rules at end of file. */
+.cs_hero.cs_style_1.cs_type_3 .cs_hero_platform_carousel {
+  width: 100%;
+  margin-left: 0;
+  position: relative;
+  z-index: 1;
+  aspect-ratio: 1871 / 960;
+  min-height: 200px;
+  border-radius: 28px;
+  overflow: hidden;
+  background: transparent;
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.12);
+}
+.cs_hero.cs_style_1.cs_type_3 .cs_hero_platform_carousel .carousel-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: center center;
+  border-radius: 0;
+  box-shadow: none;
+  transition: opacity 1s ease-in-out;
 }
 .cs_hero.cs_style_1.cs_type_3 .cs_hero_thumbnail > img {
   position: relative;
   z-index: 1;
 }
-.cs_hero.cs_style_1.cs_type_3 .cs_hero_shape_vector {
-  top: -70px;
-  right: -80px;
-  left: initial;
+.cs_hero.cs_style_1.cs_type_3 .cs_hero_thumbnail .cs_hero_shape_vector {
+  top: -68px;
+  right: -50px;
+  left: auto;
+  bottom: auto;
+  z-index: 0;
+  pointer-events: none;
+}
+.cs_hero.cs_style_1.cs_type_3 .cs_hero_thumbnail .cs_hero_shape_vector img {
+  width: 72px;
+  height: auto;
+  display: block;
 }
 .cs_hero.cs_style_1.cs_type_3 .cs_volume_report {
   top: -80px;
@@ -3683,6 +3864,15 @@ hr {
   top: 0;
   z-index: 0;
 }
+/* Desktop-only vertical nudge for side-by-side hero; reset on stacked mobile (inline margins caused overlap). */
+@media (min-width: 992px) {
+  .cs_hero.cs_style_1.cs_type_3 .cs_hero_thumbnail.cs_hero_type3_vertical_align {
+    margin-top: -100px;
+  }
+  .cs_hero.cs_style_1.cs_type_3 .cs_hero_text.cs_hero_type3_vertical_align {
+    margin-top: -50px;
+  }
+}
 @media (max-width: 1550px) {
   .cs_hero.cs_style_1 .cs_hero_shape_1 {
     left: -45px;
@@ -3702,12 +3892,63 @@ hr {
     min-width: 100%;
     border-radius: 20px;
   }
+  .cs_hero.cs_style_1.cs_type_3 .cs_hero_thumbnail {
+    border-radius: 24px;
+  }
+  .cs_hero.cs_style_1.cs_type_3 .cs_hero_platform_carousel {
+    width: 100%;
+    margin-left: 0;
+    aspect-ratio: 1871 / 960;
+    border-radius: 24px;
+  }
+  .cs_hero.cs_style_1.cs_type_3 .cs_hero_platform_carousel .carousel-image {
+    border-radius: 0;
+  }
   .cs_hero.cs_style_1 .cs_hero_text {
     max-width: 100%;
   }
   .cs_hero.cs_style_1 .cs_hero_shape_vector,
   .cs_hero.cs_style_1 .cs_hero_shape_1 {
     display: none;
+  }
+  /* Keep “flying” badges inside the thumbnail on narrow screens (avoids viewport clip) */
+  .cs_hero.cs_style_1.cs_type_1 .cs_text_check_wrap {
+    right: auto;
+    left: 0.35rem;
+    bottom: 8%;
+    max-width: min(200px, calc(48% - 0.5rem));
+    padding: 0 0 12px 0;
+    animation: none;
+  }
+  .cs_hero.cs_style_1.cs_type_1 .cs_aiassistant_wrap {
+    left: auto;
+    right: 0.35rem;
+    top: 6%;
+    max-width: min(190px, calc(48% - 0.5rem));
+    padding: 0 0 12px 0;
+    animation: none;
+  }
+  .cs_hero.cs_style_1.cs_type_1 .cs_text_check_wrap .cs_arrow,
+  .cs_hero.cs_style_1.cs_type_1 .cs_aiassistant_wrap .cs_arrow {
+    display: none;
+  }
+  .cs_hero.cs_style_1.cs_type_1 .cs_iconbox.cs_style_3 {
+    padding: 8px 10px;
+    gap: 4px;
+    text-wrap: wrap;
+    white-space: normal;
+    justify-content: flex-start;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  .cs_hero.cs_style_1.cs_type_1 .cs_iconbox.cs_style_3 .cs_iconbox_icon {
+    flex-shrink: 0;
+  }
+  .cs_hero.cs_style_1.cs_type_1 .cs_iconbox.cs_style_3 h3 {
+    font-size: 12px;
+    line-height: 1.25;
+    text-align: left;
+    margin-bottom: 0 !important;
   }
 }
 
@@ -3867,7 +4108,7 @@ hr {
 }
 @media (max-width: 1399px) {
   .cs_hero.cs_style_3 {
-    padding: 210px 0 130px;
+    padding: 110px 0 80px;
   }
   .cs_hero.cs_style_3 .cs_hero_thumbnail {
     transform: translateX(-100px);
@@ -3878,7 +4119,7 @@ hr {
 }
 @media (max-width: 1199px) {
   .cs_hero.cs_style_3 {
-    padding: 160px 0 80px;
+    padding: 80px 0 60px;
   }
   .cs_hero.cs_style_3 .cs_hero_text {
     max-width: 100%;
@@ -4385,6 +4626,41 @@ hr {
   overflow: hidden;
   -webkit-line-clamp: 1;
 }
+/* Home — G.R.O.W ecosystem pillar cards: same top edge, links on shared baseline */
+.row.cs_grow_pillar_row > [class*="col-"] {
+  display: flex;
+}
+.row.cs_grow_pillar_row .cs_grow_pillar_card {
+  flex: 1 1 auto;
+  width: 100%;
+  min-height: 400px;
+  height: 100%;
+  justify-content: flex-start !important;
+  align-items: center;
+  box-sizing: border-box;
+}
+.row.cs_grow_pillar_row .cs_grow_pillar_card .cs_iconbox_icon {
+  flex-shrink: 0;
+}
+.row.cs_grow_pillar_row .cs_grow_pillar_card .cs_iconbox_info {
+  margin-top: 0 !important;
+  width: 100%;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.row.cs_grow_pillar_row .cs_grow_pillar_card .cs_iconbox_subtitle {
+  flex: 1 1 auto;
+  width: 100%;
+  margin-bottom: 0 !important;
+}
+.row.cs_grow_pillar_row .cs_grow_pillar_card .cs_iconbox_info > p {
+  margin-top: auto !important;
+  padding-top: 16px;
+  flex-shrink: 0;
+  width: 100%;
+}
 .cs_iconbox.cs_style_1.cs_type_1 .cs_bg_1 {
   background-color: #6DE8F2;
 }
@@ -4762,14 +5038,132 @@ hr {
   grid-template-columns: repeat(3, 1fr);
   gap: 30px;
 }
+/* Landing pricing: four cards (3 plans + extra hectares) */
+.cs_pricing_table_wrapper.cs_pricing_table_wrapper_four {
+  grid-template-columns: repeat(4, 1fr);
+  align-items: stretch;
+}
+.cs_pricing_table_wrapper_four > .cs_pricing_table {
+  height: 100%;
+}
+/* Pricing page: wider row + smaller prices (hero only) */
+.cs_pricing_container_wide {
+  width: 100%;
+  max-width: 1580px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: clamp(16px, 4vw, 32px);
+  padding-right: clamp(16px, 4vw, 32px);
+  box-sizing: border-box;
+}
+.cs_pricing_hero_section .cs_pricing_table_wrapper_four {
+  gap: 18px 20px;
+}
+@media (min-width: 1400px) {
+  .cs_pricing_hero_section .cs_pricing_table_wrapper_four {
+    gap: 20px 28px;
+  }
+}
+.cs_pricing_hero_section .cs_pricing_table.cs_style_1 {
+  padding: 26px 20px;
+}
+@media (min-width: 1200px) {
+  .cs_pricing_hero_section .cs_pricing_table.cs_style_1 {
+    padding: 28px 22px;
+  }
+}
+.cs_pricing_hero_section .cs_pricing_head_price {
+  font-size: clamp(1.5rem, 1.1vw + 1.1rem, 2rem) !important;
+  line-height: 1.2 !important;
+  font-weight: 700;
+  max-width: 100%;
+}
+.cs_pricing_hero_section .cs_pricing_head_price .cs_price_value {
+  white-space: nowrap;
+}
+.cs_pricing_hero_section .cs_pricing_head_price .monthlyText,
+.cs_pricing_hero_section .cs_pricing_head_price .yearlyText {
+  font-weight: 600;
+  font-size: 0.9em;
+  opacity: 0.92;
+}
+.cs_pricing_hero_section .cs_pricing_table.active .cs_pricing_btn {
+  background-color: var(--white-color);
+  color: var(--heading-color);
+  border-color: var(--heading-color);
+}
+.cs_pricing_hero_section .cs_pricing_table.active .cs_pricing_btn:hover {
+  background-color: var(--purple-color);
+  color: var(--white-color);
+  border-color: var(--purple-color);
+}
+/* Align plan CTAs: equal top block; must clear tallest price + subtitle (4-col layout) */
+.cs_pricing_hero_section .cs_pricing_head.cs_center_column {
+  justify-content: flex-start;
+}
+.cs_pricing_hero_section .cs_pricing_head_lead {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+  /* Shorter block now that price type is smaller; keeps CTAs aligned */
+  min-height: 12.5rem;
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  .cs_pricing_hero_section .cs_pricing_head_lead {
+    min-height: 11.25rem;
+  }
+}
+@media (max-width: 991px) {
+  .cs_pricing_hero_section .cs_pricing_head_lead {
+    min-height: 0;
+  }
+}
+.cs_pricing_hero_section .cs_pricing_table .cs_pricing_btn {
+  margin-top: 0;
+  flex-shrink: 0;
+}
+/* Four-col cards: keep feature lists top-aligned so row-1 checks line up (avoid mt-auto stretch) */
+.cs_pricing_hero_section .cs_pricing_card_body {
+  margin-top: 1.25rem;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: 100%;
+  min-height: 0;
+}
+/* Match in-app plan cards: same bullet count + similar vertical rhythm between checkmarks */
+.cs_pricing_hero_section .cs_pricing_table .cs_pricing_feature_list li {
+  margin-bottom: 14px;
+  min-height: 2.85rem;
+}
+.cs_pricing_hero_section .cs_pricing_table .cs_pricing_feature_list li:last-child {
+  margin-bottom: 0;
+}
+@media (min-width: 992px) {
+  .cs_pricing_hero_section .cs_pricing_table .cs_pricing_feature_list li {
+    min-height: 3.1rem;
+  }
+}
 @media (min-width: 1400px) {
   .cs_pricing_table_wrapper {
     gap: 30px 75px;
   }
 }
+@media (max-width: 1199px) and (min-width: 992px) {
+  .cs_pricing_table_wrapper.cs_pricing_table_wrapper_four {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
 @media (max-width: 991px) {
   .cs_pricing_table_wrapper {
     grid-template-columns: repeat(1, 1fr);
+  }
+  .cs_pricing_table_wrapper.cs_pricing_table_wrapper_four {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -5302,10 +5696,13 @@ Pricing controller
   width: 100%;
   max-width: 874px;
   height: 100%;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
   animation: circular-rotation 60s linear infinite;
+  animation-play-state: running;
+  position: absolute !important;
+  will-change: transform;
 }
 .cs_payments_info_wrapper::after {
   content: "";
@@ -5383,6 +5780,10 @@ Pricing controller
   .cs_payments_info_wrapper .cs_circular_shape {
     max-width: 100%;
     height: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: circular-rotation 60s linear infinite;
   }
   .cs_payments_info_wrapper .cs_payments_logo_wrapper {
     margin-top: 60px;
@@ -5567,6 +5968,35 @@ Pricing controller
   .cs_video_block.cs_style_1 {
     min-height: 400px;
   }
+}
+
+/* About Us hero: image fills block like background (avoids 40MB background-image blocking) */
+.cs_about_hero_wrap {
+  overflow: visible;
+  position: relative;
+  /* Placeholder while hero image loads – reduces perceived wait */
+  background-color: #e5e8e0;
+}
+.cs_about_hero_img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 20px;
+}
+.cs_about_hero_wrap picture {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: hidden;
+  border-radius: 20px;
+}
+.cs_about_hero_wrap .cs_feature_shape_3 {
+  z-index: 2;
 }
 
 @keyframes circular-rotation {
@@ -5980,7 +6410,7 @@ Pricing controller
   padding: 40px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
   margin: 0 auto;
-  max-width: 1200px;
+  max-width: 1280px;
 }
 
 .cs_comparison_table {
@@ -5993,9 +6423,74 @@ Pricing controller
   margin: 0 auto;
   width: 100%; /* Added for table within wrapper */
 }
+/* Mobile / tablet: keep table in viewport — wrap text, no horizontal scroll */
+@media (max-width: 991px) {
+  .cs_table_card_wrapper {
+    padding: 16px 12px;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  .table-responsive.cs_comparison_table_responsive {
+    overflow-x: visible !important;
+    -webkit-overflow-scrolling: auto;
+  }
+  .cs_comparison_table {
+    table-layout: fixed;
+    width: 100% !important;
+    max-width: 100%;
+    min-width: 0;
+    overflow: hidden;
+    display: table;
+  }
+  .cs_comparison_table th,
+  .cs_comparison_table td {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    white-space: normal !important;
+    vertical-align: top;
+  }
+  .cs_comparison_table thead th.cs_feature_header {
+    width: 40% !important;
+    font-size: 13px;
+    line-height: 1.3;
+    padding: 12px 8px !important;
+  }
+  .cs_comparison_table thead th:not(.cs_feature_header) {
+    width: 20%;
+    font-size: 11px;
+    line-height: 1.25;
+    padding: 12px 6px !important;
+  }
+  .cs_comparison_table td.cs_feature_category {
+    width: 40% !important;
+    font-size: 13px;
+    line-height: 1.45;
+    padding: 10px 8px !important;
+  }
+  .cs_comparison_table td.cs_basic_plan,
+  .cs_comparison_table td.cs_advanced_plan,
+  .cs_comparison_table td.cs_premium_plan {
+    width: 20%;
+    font-size: 12px;
+    line-height: 1.35;
+    padding: 10px 6px !important;
+  }
+  .cs_comparison_table td[colspan] {
+    width: auto !important;
+  }
+  .cs_comparison_table tbody tr.cs_comparison_section_row > td.cs_comparison_section_cell {
+    font-size: 14px;
+    padding: 12px 10px !important;
+  }
+  .cs_comparison_table .fa-check,
+  .cs_comparison_table .fa-times {
+    font-size: 15px;
+  }
+}
 
 .cs_comparison_table th {
-  background: linear-gradient(135deg, #8cb43a 0%, #6b8c2a 100%);
+  background: #8cb43a;
   color: var(--white-color);
   border: none;
   padding: 20px 15px;
@@ -6006,15 +6501,19 @@ Pricing controller
 
 .cs_feature_header {
   text-align: left !important;
-  width: 40%;
+  width: 28%;
 }
 
 .cs_basic_plan_header {
-  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%) !important;
+  background: #7aa832 !important;
 }
 
 .cs_advanced_plan_header {
-  background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%) !important;
+  background: #669b2a !important;
+}
+
+.cs_premium_plan_header {
+  background: #558022 !important;
 }
 
 .cs_comparison_table td {
@@ -6033,6 +6532,24 @@ Pricing controller
   color: var(--heading-color);
 }
 
+/* Section headers: beat Bootstrap .table > :not(caption) > * > * (cell background) */
+.cs_comparison_table tbody tr.cs_comparison_section_row > td.cs_comparison_section_cell {
+  padding: 14px 15px;
+  vertical-align: middle;
+  background-color: #8cb43a !important;
+  color: var(--white-color) !important;
+  border-color: #6a902e !important;
+  /* cancel Bootstrap’s inset “accent” fill */
+  box-shadow: none !important;
+  font-size: 15px;
+  font-weight: 600;
+  text-align: left;
+}
+
+.cs_comparison_table tbody tr.cs_comparison_section_row:first-child > td.cs_comparison_section_cell {
+  border-top-color: #e9ecef !important;
+}
+
 .cs_basic_plan {
   background: #f1f8e9;
   color: #2e7d32;
@@ -6043,8 +6560,19 @@ Pricing controller
   color: #ef6c00;
 }
 
+.cs_premium_plan {
+  background: #e8f5e9;
+  color: #1b5e20;
+}
+
+.cs_comparison_table .cs_cell_partial {
+  font-size: 14px;
+  color: #5d4037;
+  font-weight: 600;
+}
+
 .cs_comparison_table .fa-check {
-  color: #4CAF50;
+  color: #4caf50;
   font-size: 18px;
 }
 
@@ -6059,21 +6587,30 @@ Pricing controller
 
 @media (max-width: 768px) {
   .cs_table_card_wrapper {
-    padding: 20px; /* Added responsive padding */
+    padding: 14px 10px;
   }
   .cs_comparison_table {
-    font-size: 14px;
+    font-size: 13px;
   }
-  .cs_comparison_table th,
-  .cs_comparison_table td {
-    padding: 10px 8px;
+  .cs_comparison_table thead th.cs_feature_header {
+    font-size: 12px;
   }
-  .cs_feature_header {
-    width: 35%;
+  .cs_comparison_table thead th:not(.cs_feature_header) {
+    font-size: 10px;
+    padding: 10px 4px !important;
+  }
+  .cs_comparison_table td.cs_feature_category {
+    font-size: 12px;
+  }
+  .cs_comparison_table td.cs_basic_plan,
+  .cs_comparison_table td.cs_advanced_plan,
+  .cs_comparison_table td.cs_premium_plan {
+    font-size: 11px;
+    padding: 8px 4px !important;
   }
   .cs_comparison_table .fa-check,
   .cs_comparison_table .fa-times {
-    font-size: 16px;
+    font-size: 14px;
   }
 }
 
@@ -6243,15 +6780,16 @@ Pricing controller
 
 /*--------------------------------------
  Carousel Image Size Improvements
+ (skipped on home hero: .cs_hero_platform_carousel uses its own aspect-ratio + cover)
 ----------------------------------------*/
-.cs_image_carousel {
+.cs_image_carousel:not(.cs_hero_platform_carousel) {
   width: 100% !important;
   height: 700px !important; /* Increased from 600px */
   max-width: 800px !important;
   margin: 0 auto;
 }
 
-.cs_image_carousel .carousel-image {
+.cs_image_carousel:not(.cs_hero_platform_carousel) .carousel-image {
   width: 100% !important;
   height: 100% !important;
   object-fit: contain !important;
@@ -6261,8 +6799,8 @@ Pricing controller
   transition: opacity 1s ease-in-out !important;
 }
 
-/* Make hero image bigger */
-.cs_hero_thumbnail img {
+/* Make hero image bigger (exclude rotating carousel images inside thumbnail) */
+.cs_hero_thumbnail img:not(.carousel-image) {
   max-width: 900px !important; /* Increased from 800px */
   width: 100% !important;
   height: auto !important;
@@ -6272,18 +6810,18 @@ Pricing controller
 
 /* Responsive adjustments for mobile */
 @media (max-width: 768px) {
-  .cs_image_carousel {
+  .cs_image_carousel:not(.cs_hero_platform_carousel) {
     height: 500px !important;
     max-width: 100% !important;
   }
   
-  .cs_hero_thumbnail img {
+  .cs_hero_thumbnail img:not(.carousel-image) {
     max-width: 100% !important;
   }
 }
 
 @media (max-width: 480px) {
-  .cs_image_carousel {
+  .cs_image_carousel:not(.cs_hero_platform_carousel) {
     height: 400px !important;
   }
 }
@@ -6374,4 +6912,188 @@ section .cs_card.cs_style_1.cs_type_6 .cs_card_thumbnail {
   margin: 0 !important;
   padding: 0 !important;
   top: 0 !important;
+}
+
+/* Fade with Scale Effect for Hero Section */
+.rotating-text {
+  position: relative;
+  display: inline-block;
+  color: #8cb43a;
+  font-weight: 600;
+  vertical-align: baseline;
+  min-width: auto;
+  height: 1.2em;
+}
+
+.rotating-text .text-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transform: scale(0.8) translateY(10px);
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
+  color: #8cb43a;
+  font-weight: 600;
+  line-height: inherit;
+}
+
+.rotating-text .text-item.active {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  position: relative;
+}
+
+.rotating-text .text-item.fade-out {
+  opacity: 0;
+  transform: scale(1.1) translateY(-10px);
+}
+
+/* Expandable Features Styles */
+.expandable-item {
+  transition: all 0.3s ease;
+}
+
+.expandable-item:hover {
+  background-color: rgba(140, 180, 58, 0.05);
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin: -8px -12px;
+}
+
+.expanded-features {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid #e8e8e8;
+  animation: slideDown 0.3s ease-out;
+  opacity: 1;
+  visibility: visible;
+  transition: all 0.3s ease;
+}
+
+.expanded-features[style*="display: none"] {
+  opacity: 0;
+  visibility: hidden;
+  max-height: 0;
+  margin-top: 0;
+  padding-top: 0;
+  overflow: hidden;
+}
+
+.expanded-features ul {
+  margin: 0;
+  padding: 0;
+}
+
+.expanded-features li {
+  margin-bottom: 12px;
+  opacity: 0;
+  animation: fadeInUp 0.4s ease-out forwards;
+}
+
+.expanded-features li:nth-child(1) { animation-delay: 0.1s; }
+.expanded-features li:nth-child(2) { animation-delay: 0.2s; }
+.expanded-features li:nth-child(3) { animation-delay: 0.3s; }
+.expanded-features li:nth-child(4) { animation-delay: 0.4s; }
+.expanded-features li:nth-child(5) { animation-delay: 0.5s; }
+.expanded-features li:nth-child(6) { animation-delay: 0.6s; }
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+    padding-top: 0;
+  }
+  to {
+    opacity: 1;
+    max-height: 200px;
+    padding-top: 15px;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Clickable Tool Cards */
+.cs_payment_logo[href] {
+  transition: all 0.3s ease;
+}
+
+.cs_payment_logo[href]:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  background-color: #f8f9fa !important;
+}
+
+.cs_payment_logo[href]:hover .cs_payment_icon i {
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
+}
+
+/* Clock Layout for G.R.O.W Cards */
+.clock-layout {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  grid-template-rows: auto 1fr auto;
+  width: 400px;
+  height: 400px;
+  margin: 0 auto;
+  gap: 20px;
+  align-items: center;
+  justify-items: center;
+}
+
+.clock-layout .cs_payment_logo {
+  width: 120px;
+  height: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.clock-12 {
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: center;
+}
+
+.clock-3 {
+  grid-column: 3;
+  grid-row: 2;
+  justify-self: center;
+}
+
+.clock-6 {
+  grid-column: 2;
+  grid-row: 3;
+  justify-self: center;
+}
+
+.clock-9 {
+  grid-column: 1;
+  grid-row: 2;
+  justify-self: center;
+}
+
+/* Responsive adjustments for clock layout */
+@media (max-width: 768px) {
+  .clock-layout {
+    width: 300px;
+    height: 300px;
+    gap: 15px;
+  }
+  
+  .clock-layout .cs_payment_logo {
+    width: 100px;
+    height: 100px;
+  }
 }

@@ -31,7 +31,7 @@
           <div class="cs_main_header_in">
             <div class="cs_main_header_left">
               <a class="cs_site_branding" href="index.html" aria-label="Home page link">
-              <img src="assets/img/NTS G.R.O.W Logo .png" alt="Logo">
+              <img src="assets/img/NTS G.R.O.W Logo .png" alt="Logo" loading="lazy">
               </a>
             </div>
             <div class="cs_main_header_center">
@@ -39,27 +39,35 @@
                 <ul class="cs_nav_list">
                   <li><a href="index.html" aria-label="Menu link">Home</a></li>
                   <li><a href="about-us.html" aria-label="Menu link">About Us</a></li>
-                  <li><a href="features.html" aria-label="Menu link">Features</a></li>
-                  <li><a href="pricing.html" aria-label="Menu link">Pricing</a></li>
-                  <li><a href="faqs.html" aria-label="Menu link">FAQ</a></li>
-                  <li><a href="contact.html" aria-label="Menu link">Contact Us</a></li>
-                  <li class="menu-item-has-children">
-                    <a href="" aria-label="Menu link">Account</a>
+                  <li class="menu-item-has-children"><a href="features.html" aria-label="Menu link">Features</a>
                     <ul>
-                      <li><a href="https://gestion.ntsgrow.com/login" aria-label="Menu link">Login</a></li>
-                      <li><a href="https://gestion.ntsgrow.com/register" aria-label="Menu link">Register</a></li>
+                      <li><a href="guidance.html" aria-label="Guidance page link">Guidance</a></li>
+                      <li><a href="resilience.html" aria-label="Resilience page link">Resilience</a></li>
+                      <li><a href="organisation.html" aria-label="Organisation page link">Organisation</a></li>
+                      <li><a href="wisdom.html" aria-label="Wisdom page link">Wisdom</a></li>
                     </ul>
                   </li>
+                  <li><a href="pricing.html" aria-label="Menu link">Pricing</a></li>
+                  <li><a href="contact.html" aria-label="Menu link">Contact Us</a></li>
                 </ul>
               </div>
+            </div>
+            <div class="cs_main_header_right">
+              <a href="https://gestion.ntsgrow.com/login" aria-label="Login page link">
+              <span>Login</span>
+              </a>
+              <a href="pricing.html" aria-label="Get Started page link button" class="cs_btn cs_style_1 cs_fs_16 cs_semibold cs_purple_bg cs_white_color cs_accent_hover">
+              <span>Get Started</span>
+              </a>
             </div>
           </div>
         </div>
       </div>
-      <hr>
     </header>
-    <div class="cs_height_100 cs_height_lg_80"></div>
     <!-- End Header Section -->
+    
+    <!-- Spacer between header and hero -->
+    <div class="cs_height_80 cs_height_lg_60"></div>
     <!-- Start Contact Hero Section -->
     <section>
       <div class="cs_height_58 cs_height_lg_58"></div>
@@ -86,7 +94,7 @@
               </span>
               <div class="cs_iconbox_info">
                 <h3 class="cs_fs_29 cs_normal cs_mb_15">Call Us</h3>
-                <p class="mb-0">Call us at <a href="tel:+610754729900" aria-label="Call us link" class="cs_accent_color">+61 (07) 5472 9900</a>, available Monday to Friday, 9 AM to 5 PM.</p>
+                <p class="mb-0">Call us at <a href="tel:+610754729900" aria-label="Call us link" class="cs_accent_color">+61 (07) 5472 9900</a>, available Monday to Friday, 8 AM to 4 PM.</p>
               </div>
             </div>
           </div>
@@ -144,7 +152,8 @@
               <p class="cs_section_subtitle cs_mb_23">ANY QUERY <span class="cs_pill"></span></p>
               <h2 class="cs_section_title cs_fs_50 mb-0 wow fadeInDown">Feel free to fill out this form & contact us.</h2>
             </div>
-            <form action="contact-handler.php" method="POST" class="cs_contact_form row cs_gap_y_24" id="cs_form">
+            <form action="https://api.web3forms.com/submit" method="POST" class="cs_contact_form row cs_gap_y_24" id="cs_form">
+              <input type="hidden" name="access_key" value="a1ff02ae-b375-4f5a-afa0-55f3f2edc984">
               <div class="col-sm-6">
                 <label for="fullname">Full Name*</label>
                 <input type="text" name="fullname" class="cs_form_field cs_radius_30" id="fullname" required>
@@ -203,36 +212,19 @@
           </div>
         </div>
       </div>
-      <div class="cs_height_140 cs_height_lg_80"></div>
+      <div class="cs_height_50 cs_height_lg_40"></div>
     </section>
     <!-- End Contact Section -->
-    <!-- Start Support Section -->
-    <section class="cs_gray_bg_5">
-      <div class="container">
-        <div class="cs_support_content_wrapper">
-                     <div class="cs_support_text">
-             <h3 class="cs_fs_29 cs_normal mb-0">Any Questions? Our expert agronomists are here to help</h3>
-           </div>
-                     <a href="contact.html" aria-label="Contact Us" class="cs_btn cs_style_1 cs_heading_bg cs_purple_hover cs_fs_16 cs_white_color cs_semibold mt-0 wow fadeInRight">
-           <span>Contact Us</span>
-           <span class="cs_btn_icon cs_center overflow-hidden">
-           <i class="fa-solid fa-arrow-right"></i>
-           </span>
-           </a>
-        </div>
-      </div>
-    </section>
-    <!-- End Support Section --> 
     <!-- Start Footer Section -->
     <footer class="cs_footer cs_style_1">
-      <div class="cs_height_130 cs_height_lg_80"></div>
+      <div class="cs_height_45 cs_height_lg_35"></div>
       <div class="container">
         <div class="cs_footer_main">
           <div class="row cs_gap_y_30">
             <div class="col-xl-4 col-lg-4 col-md-7">
               <div class="cs_footer_widget cs_text_widget">
                 <div class="cs_brand cs_mb_10 wow fadeInUp">
-                  <img src="assets/img/NTS G.R.O.W Logo .png" alt="Logo">
+                  <img src="assets/img/NTS G.R.O.W Logo .png" alt="Logo" loading="lazy">
                 </div>
                 <p class="mb-0">NTS G.R.O.W – Your comprehensive nutrition farming platform combining 30+ years of expertise with cutting-edge technology for sustainable, profitable agriculture.</p>
               </div>
@@ -245,7 +237,6 @@
                   <li><a href="about-us.html" aria-label="About Us page link">About Us</a></li>
                   <li><a href="features.html" aria-label="Features page link">Features</a></li>
                   <li><a href="pricing.html" aria-label="Pricing page link">Pricing</a></li>
-                  <li><a href="faqs.html" aria-label="FAQ page link">FAQ</a></li>
                   <li><a href="contact.html" aria-label="Contact page link">Contact Us</a></li>
                 </ul>
               </div>
@@ -254,7 +245,6 @@
               <div class="cs_footer_widget cs_help_widget">
                 <h3 class="cs_footer_widget_title cs_fs_21 cs_mb_21">Help Center</h3>
                 <ul class="cs_footer_medu cs_mp_0">
-                  <li><a href="faqs.html" aria-label="FAQ page link">FAQs</a></li>
                   <li><a href="contact.html" aria-label="Contact page link">Contact</a></li>
                   <li><a href="term-condition.html" aria-label="Terms & Conditions link">Terms & Conditions</a></li>
                 </ul>
@@ -267,7 +257,7 @@
                   <li>7 Harvest Rd, Yandina QLD 4561</li>
                   <li><a href="mailto:info@ntsgrow.com" aria-label="Email send link">info@ntsgrow.com</a></li>
                   <li><a href="tel:+610754729900" aria-label="Phone call link">+61 (07) 5472 9900</a></li>
-                  <li>Monday to Friday, 9 AM to 5 PM</li>
+                  <li>Monday to Friday, 8 AM to 4 PM</li>
                 </ul>
               </div>
             </div>
@@ -294,54 +284,5 @@
     <script src="assets/js/jquery.slick.min.js"></script>
     <script src="assets/js/odometer.js"></script>
     <script src="assets/js/main.js"></script>
-    
-    <!-- Contact Form Handling Script -->
-    <script>
-      document.getElementById('cs_form').addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const submitButton = this.querySelector('button[type="submit"]');
-        const resultDiv = document.getElementById('cs_result');
-        const originalButtonText = submitButton.querySelector('span').textContent;
-        
-        // Disable button and show loading state
-        submitButton.disabled = true;
-        submitButton.querySelector('span').textContent = 'Sending...';
-        
-        // Get form data
-        const formData = new FormData(this);
-        
-        // Submit form to PHP handler
-        fetch('contact-handler.php', {
-          method: 'POST',
-          body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-          if (data.success) {
-            // Success message
-            resultDiv.innerHTML = '<div class="alert alert-success" style="background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; padding: 15px; border-radius: 5px; margin-top: 15px;">Thank you! Your message has been sent successfully. We\'ll get back to you soon.</div>';
-            
-            // Reset form
-            this.reset();
-            
-            // Scroll to result message
-            resultDiv.scrollIntoView({ behavior: 'smooth' });
-          } else {
-            // Error message
-            resultDiv.innerHTML = '<div class="alert alert-danger" style="background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; padding: 15px; border-radius: 5px; margin-top: 15px;">Sorry, there was an error sending your message. Please try again or contact us directly.</div>';
-          }
-        })
-        .catch(error => {
-          // Network error
-          resultDiv.innerHTML = '<div class="alert alert-danger" style="background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; padding: 15px; border-radius: 5px; margin-top: 15px;">Network error. Please check your connection and try again.</div>';
-        })
-        .finally(() => {
-          // Re-enable button and restore text
-          submitButton.disabled = false;
-          submitButton.querySelector('span').textContent = originalButtonText;
-        });
-      });
-    </script>
   </body>
 </html>
