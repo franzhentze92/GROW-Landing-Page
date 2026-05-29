@@ -2297,11 +2297,33 @@ hr {
 .cs_section_heading.cs_style_1 .cs_section_heading_right {
   max-width: 40%;
 }
+/* Home hero features intro: tighter to title + justified body copy */
+.cs_section_heading.cs_style_1.cs_type_1.cs_ecosystem_heading {
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 28px 36px;
+}
+.cs_section_heading.cs_style_1.cs_type_1.cs_ecosystem_heading .cs_section_heading_left {
+  flex: 0 1 auto;
+  max-width: min(520px, 46%);
+}
+.cs_section_heading.cs_style_1.cs_type_1.cs_ecosystem_heading .cs_section_heading_right {
+  max-width: none;
+  flex: 1 1 0;
+  min-width: 0;
+}
+.cs_section_heading.cs_style_1.cs_type_1.cs_ecosystem_heading .cs_ecosystem_intro_copy {
+  text-align: justify;
+  text-wrap: pretty;
+}
 @media (max-width: 991px) {
   .cs_section_heading.cs_style_1.cs_type_1 {
     flex-direction: column;
   }
   .cs_section_heading.cs_style_1 .cs_section_heading_right {
+    max-width: 100%;
+  }
+  .cs_section_heading.cs_style_1.cs_type_1.cs_ecosystem_heading .cs_section_heading_left {
     max-width: 100%;
   }
 }
@@ -3818,6 +3840,11 @@ hr {
   border-radius: 0;
   box-shadow: none;
   transition: opacity 1s ease-in-out;
+}
+/* Home hero — clock orbit: carousel at centre, modules orbit outside */
+.cs_home_hero.cs_hero.cs_style_1.cs_type_3 .cs_hero_clock_stage .cs_hero_platform_carousel {
+  width: min(580px, 94%);
+  margin-left: 0;
 }
 .cs_hero.cs_style_1.cs_type_3 .cs_hero_thumbnail > img {
   position: relative;
@@ -6782,14 +6809,14 @@ Pricing controller
  Carousel Image Size Improvements
  (skipped on home hero: .cs_hero_platform_carousel uses its own aspect-ratio + cover)
 ----------------------------------------*/
-.cs_image_carousel:not(.cs_hero_platform_carousel) {
+.cs_image_carousel:not(.cs_hero_platform_carousel):not(.cs_pillar_platform_carousel) {
   width: 100% !important;
   height: 700px !important; /* Increased from 600px */
   max-width: 800px !important;
   margin: 0 auto;
 }
 
-.cs_image_carousel:not(.cs_hero_platform_carousel) .carousel-image {
+.cs_image_carousel:not(.cs_hero_platform_carousel):not(.cs_pillar_platform_carousel) .carousel-image {
   width: 100% !important;
   height: 100% !important;
   object-fit: contain !important;
@@ -6810,7 +6837,7 @@ Pricing controller
 
 /* Responsive adjustments for mobile */
 @media (max-width: 768px) {
-  .cs_image_carousel:not(.cs_hero_platform_carousel) {
+  .cs_image_carousel:not(.cs_hero_platform_carousel):not(.cs_pillar_platform_carousel) {
     height: 500px !important;
     max-width: 100% !important;
   }
@@ -6821,7 +6848,7 @@ Pricing controller
 }
 
 @media (max-width: 480px) {
-  .cs_image_carousel:not(.cs_hero_platform_carousel) {
+  .cs_image_carousel:not(.cs_hero_platform_carousel):not(.cs_pillar_platform_carousel) {
     height: 400px !important;
   }
 }
@@ -7095,5 +7122,816 @@ section .cs_card.cs_style_1.cs_type_6 .cs_card_thumbnail {
   .clock-layout .cs_payment_logo {
     width: 100px;
     height: 100px;
+  }
+}
+
+/* ============================================================
+   Home Page — Premium SaaS Landing (2026 refresh)
+   ============================================================ */
+
+/* Hero refinements */
+.cs_home_hero {
+  padding-bottom: 20px;
+  overflow: visible;
+}
+.cs_home_hero .container,
+.cs_home_hero .cs_hero_content,
+.cs_home_hero .row {
+  overflow: visible;
+}
+.cs_home_hero .cs_hero_eyebrow {
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.cs_home_hero .cs_hero_lead {
+  color: var(--body-color);
+  line-height: 1.65;
+  max-width: 540px;
+}
+.cs_home_hero .cs_hero_title {
+  line-height: 1.15;
+  margin-bottom: 20px;
+}
+.cs_hero_visual_wrap {
+  padding: 0;
+  overflow: visible;
+}
+.cs_home_hero .cs_hero_thumbnail {
+  overflow: visible;
+}
+/* Clock orbit stage — carousel at centre, modules orbit on/over the image */
+.cs_hero_clock_stage {
+  position: relative;
+  width: 100%;
+  max-width: 820px;
+  min-height: 0;
+  margin: 0 auto;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Fixed orbit radius — cards may overlap screenshot; wider dial */
+  --orbit-radius: 265px;
+}
+.cs_home_hero .cs_hero_clock_stage .cs_hero_platform_carousel {
+  width: min(580px, 94%);
+  flex-shrink: 0;
+  z-index: 2;
+  position: relative;
+}
+.cs_hero_float_cards {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  z-index: 6;
+}
+.cs_hero_float_card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--heading-color);
+  background: var(--white-color);
+  box-shadow: 0 6px 24px rgba(10, 10, 16, 0.14);
+  border: 1px solid rgba(140, 180, 58, 0.15);
+  white-space: nowrap;
+  pointer-events: auto;
+  z-index: 6;
+  --clock-step: 36deg;
+  --clock-angle: calc(var(--clock-i, 0) * var(--clock-step) - 90deg);
+  --float-delay: calc(var(--clock-i, 0) * -0.6s);
+  transform:
+    translate(-50%, -50%)
+    rotate(var(--clock-angle))
+    translateY(calc(-1 * var(--orbit-radius)))
+    rotate(calc(-1 * var(--clock-angle)));
+}
+.cs_hero_float_card:has(.cs_hero_float_card_inner) {
+  display: block;
+  padding: 0;
+  overflow: hidden;
+  animation: cs_hero_float_shadow 5.5s ease-in-out infinite;
+  animation-delay: var(--float-delay);
+}
+.cs_hero_float_card_inner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  animation: cs_hero_float_drift 5.5s ease-in-out infinite;
+  animation-delay: var(--float-delay);
+  will-change: transform;
+}
+.cs_hero_float_card i {
+  font-size: 13px;
+  flex-shrink: 0;
+}
+@keyframes cs_hero_float_drift {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate3d(4px, -10px, 0) rotate(1.2deg);
+  }
+  50% {
+    transform: translate3d(-3px, -6px, 0) rotate(-0.8deg);
+  }
+  75% {
+    transform: translate3d(2px, -12px, 0) rotate(0.6deg);
+  }
+}
+@keyframes cs_hero_float_shadow {
+  0%, 100% {
+    box-shadow: 0 6px 24px rgba(10, 10, 16, 0.14);
+  }
+  50% {
+    box-shadow: 0 14px 36px rgba(140, 180, 58, 0.2);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cs_hero_float_card:has(.cs_hero_float_card_inner),
+  .cs_hero_float_card_inner {
+    animation: none;
+  }
+}
+/* 10 modules evenly spaced — 12 o'clock through the dial */
+.cs_hero_float_1  { --clock-i: 0; }
+.cs_hero_float_2  { --clock-i: 1; }
+.cs_hero_float_3  { --clock-i: 2; }
+.cs_hero_float_4  { --clock-i: 3; }
+.cs_hero_float_5  { --clock-i: 4; }
+.cs_hero_float_6  { --clock-i: 5; }
+.cs_hero_float_7  { --clock-i: 6; }
+.cs_hero_float_8  { --clock-i: 7; }
+.cs_hero_float_9  { --clock-i: 8; }
+.cs_hero_float_10 { --clock-i: 9; }
+
+/* Trust / proof bar */
+.cs_trust_bar {
+  padding: 28px 0;
+  border-top: 1px solid rgba(140, 180, 58, 0.15);
+  border-bottom: 1px solid rgba(140, 180, 58, 0.15);
+}
+.cs_trust_bar_inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 24px 40px;
+}
+.cs_trust_item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.cs_trust_icon {
+  font-size: 18px;
+  line-height: 1;
+}
+.cs_trust_text {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--heading-color);
+  white-space: nowrap;
+}
+
+/* Section eyebrow label */
+.cs_section_eyebrow {
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.cs_mt_16 { margin-top: 16px; }
+.cs_mt_20 { margin-top: 20px; }
+
+/* Problem / solution — field grid, scan & data beacons */
+.cs_problem_section {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, #eef4e6 0%, #f8fbf4 38%, #ffffff 100%);
+}
+.cs_problem_scene {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+.cs_problem_grid {
+  position: absolute;
+  inset: 0;
+  background-color: #f3f8ed;
+  background-image:
+    linear-gradient(rgba(140, 180, 58, 0.28) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(140, 180, 58, 0.28) 1px, transparent 1px),
+    linear-gradient(rgba(140, 180, 58, 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(140, 180, 58, 0.12) 1px, transparent 1px);
+  background-size: 32px 32px, 32px 32px, 128px 128px, 128px 128px;
+  opacity: 1;
+}
+.cs_problem_grid::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 100% 90% at 50% 50%, transparent 42%, rgba(255, 255, 255, 0.4) 100%);
+  pointer-events: none;
+}
+.cs_problem_scan {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  top: 0;
+  background: linear-gradient(90deg, transparent, rgba(140, 180, 58, 0.55), transparent);
+  box-shadow: 0 0 24px rgba(140, 180, 58, 0.35);
+  animation: cs_problem_scan_sweep 11s linear infinite;
+  opacity: 0.7;
+}
+.cs_problem_hub {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  transform: translate(-50%, -50%);
+}
+.cs_problem_hub_ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border: 1px solid rgba(140, 180, 58, 0.35);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: cs_problem_hub_pulse 4.5s ease-out infinite;
+}
+.cs_problem_hub_ring_1 {
+  width: 120px;
+  height: 120px;
+}
+.cs_problem_hub_ring_2 {
+  width: 200px;
+  height: 200px;
+  animation-delay: -2.2s;
+  border-style: dashed;
+  opacity: 0.6;
+}
+.cs_problem_links {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.85;
+}
+.cs_problem_link {
+  fill: none;
+  stroke: rgba(140, 180, 58, 0.38);
+  stroke-width: 1.5;
+  stroke-dasharray: 6 8;
+  stroke-linecap: round;
+  animation: cs_problem_link_flow 14s linear infinite;
+}
+.cs_problem_link_2 { animation-delay: -3.5s; }
+.cs_problem_link_3 { animation-delay: -7s; }
+.cs_problem_link_4 { animation-delay: -10.5s; }
+.cs_problem_beacon {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  max-width: 130px;
+  animation: cs_problem_beacon_float 8s ease-in-out infinite;
+}
+.cs_problem_beacon_icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  border: 1px solid rgba(140, 180, 58, 0.45);
+  background: linear-gradient(160deg, #ffffff 0%, #f0f7e8 100%);
+  color: var(--accent-color);
+  font-size: 15px;
+  box-shadow:
+    0 0 0 4px rgba(140, 180, 58, 0.1),
+    0 10px 24px rgba(10, 10, 16, 0.06);
+}
+.cs_problem_beacon_label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: var(--heading-color);
+  line-height: 1.2;
+}
+.cs_problem_beacon_status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accent-color);
+  line-height: 1.2;
+}
+.cs_problem_beacon_status::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 0 3px rgba(140, 180, 58, 0.2);
+  animation: cs_problem_signal_blink 2.4s ease-in-out infinite;
+}
+.cs_problem_beacon_1 {
+  top: 14%;
+  left: 8%;
+  animation-delay: 0s;
+}
+.cs_problem_beacon_2 {
+  top: 14%;
+  right: 8%;
+  left: auto;
+  align-items: flex-end;
+  animation-delay: -2s;
+}
+.cs_problem_beacon_3 {
+  bottom: 14%;
+  left: 8%;
+  animation-delay: -4s;
+}
+.cs_problem_beacon_4 {
+  bottom: 14%;
+  right: 8%;
+  left: auto;
+  align-items: flex-end;
+  animation-delay: -6s;
+}
+@keyframes cs_problem_scan_sweep {
+  0% { top: 8%; opacity: 0; }
+  8% { opacity: 0.75; }
+  92% { opacity: 0.75; }
+  100% { top: 92%; opacity: 0; }
+}
+@keyframes cs_problem_hub_pulse {
+  0% {
+    opacity: 0.85;
+    transform: translate(-50%, -50%) scale(0.92);
+  }
+  70% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.15);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.15);
+  }
+}
+@keyframes cs_problem_link_flow {
+  to { stroke-dashoffset: -28; }
+}
+@keyframes cs_problem_beacon_float {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -6px, 0); }
+}
+@keyframes cs_problem_signal_blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.45; }
+}
+.cs_problem_card {
+  position: relative;
+  padding: 48px 56px;
+  max-width: 900px;
+  margin: 0 auto;
+  backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, 0.97) !important;
+  box-shadow:
+    0 4px 32px rgba(10, 10, 16, 0.08),
+    0 0 0 1px rgba(140, 180, 58, 0.12);
+}
+.cs_problem_card::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(140, 180, 58, 0.45), rgba(140, 180, 58, 0.08) 50%, rgba(140, 180, 58, 0.28));
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask-composite: xor;
+  pointer-events: none;
+}
+.cs_problem_text {
+  line-height: 1.5;
+  font-weight: 500;
+}
+.cs_solution_text {
+  line-height: 1.5;
+}
+@media (max-width: 991px) {
+  .cs_problem_beacon,
+  .cs_problem_links,
+  .cs_problem_hub {
+    display: none;
+  }
+  .cs_problem_scan {
+    opacity: 0.45;
+  }
+  .cs_problem_grid::after {
+    background: radial-gradient(ellipse 100% 85% at 50% 50%, transparent 35%, rgba(255, 255, 255, 0.35) 100%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cs_problem_scan,
+  .cs_problem_hub_ring,
+  .cs_problem_link,
+  .cs_problem_beacon,
+  .cs_problem_beacon_status::before {
+    animation: none;
+  }
+}
+
+/* Shared soft shadow */
+.cs_shadow_soft {
+  box-shadow: 0 4px 24px rgba(10, 10, 16, 0.06);
+  border: 1px solid rgba(140, 180, 58, 0.08);
+}
+
+/* Premium G.R.O.W pillar cards */
+.cs_grow_pillar_link {
+  display: flex;
+  color: inherit;
+}
+.cs_grow_pillar_link:hover {
+  color: inherit;
+}
+.row.cs_grow_pillar_row .cs_grow_pillar_premium {
+  min-height: 380px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.row.cs_grow_pillar_row .cs_grow_pillar_premium:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(10, 10, 16, 0.15);
+}
+.cs_pillar_letter {
+  font-size: 48px !important;
+  font-weight: bold;
+  color: #8cb43a !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+.row.cs_grow_pillar_row .cs_grow_pillar_premium .cs_iconbox_title {
+  flex-shrink: 0;
+  min-height: 1.35em;
+  margin-bottom: 20px !important;
+  width: 100%;
+}
+.row.cs_grow_pillar_row .cs_grow_pillar_premium .cs_pillar_tagline {
+  flex-shrink: 0;
+  min-height: 3em;
+  margin-top: 4px !important;
+  margin-bottom: 16px !important;
+  padding-top: 0 !important;
+  width: 100%;
+  display: block;
+}
+.row.cs_grow_pillar_row .cs_grow_pillar_premium .cs_pillar_detail {
+  flex: 1 1 auto;
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+  width: 100%;
+}
+.cs_pillar_tagline {
+  font-weight: 600;
+  opacity: 0.95;
+  line-height: 1.5;
+}
+.cs_pillar_detail {
+  opacity: 0.85;
+  line-height: 1.55;
+  max-width: 92%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Farm journey workflow */
+.cs_journey_steps {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px 8px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.cs_journey_step {
+  flex: 1 1 140px;
+  max-width: 180px;
+  text-align: center;
+  padding: 24px 16px;
+  background: var(--white-color);
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(10, 10, 16, 0.05);
+  border: 1px solid rgba(140, 180, 58, 0.1);
+}
+.cs_journey_step_num {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--accent-color);
+  color: var(--white-color);
+  font-weight: 700;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 14px;
+}
+.cs_journey_step_content p {
+  font-size: 14px;
+  color: var(--body-color);
+  line-height: 1.45;
+}
+.cs_journey_arrow {
+  display: flex;
+  align-items: center;
+  color: var(--accent-color);
+  font-size: 18px;
+  padding-top: 48px;
+  opacity: 0.5;
+}
+
+/* Platform showcase cards */
+.cs_platform_card {
+  overflow: hidden;
+  height: 100%;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.cs_platform_card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(10, 10, 16, 0.1);
+}
+.cs_platform_card_img {
+  overflow: hidden;
+  border-radius: 15px 15px 0 0;
+  background: #f8faf5;
+}
+.cs_platform_card_img img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.cs_platform_card_body {
+  padding: 24px;
+}
+.cs_platform_label {
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 8px;
+}
+.cs_platform_card_body p {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--body-color);
+}
+
+/* Audience cards */
+.cs_audience_card {
+  padding: 32px 28px;
+  height: 100%;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.cs_audience_card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 32px rgba(10, 10, 16, 0.08);
+}
+.cs_audience_icon {
+  font-size: 28px;
+  margin-bottom: 16px;
+}
+.cs_audience_card p {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--body-color);
+}
+
+/* Pillar section — clock float cards (4 modules) */
+.cs_pillar_section .cs_card_thumbnail {
+  overflow: visible;
+}
+.cs_pillar_visual_wrap {
+  position: relative;
+  width: 100%;
+  overflow: visible;
+}
+.cs_pillar_clock_stage {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  --orbit-radius: 230px;
+  --clock-step: 90deg;
+}
+.cs_pillar_clock_stage .cs_pillar_main_img,
+.cs_pillar_clock_stage .cs_pillar_platform_carousel {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 100%;
+}
+.cs_pillar_clock_stage .cs_pillar_platform_carousel {
+  position: relative;
+  aspect-ratio: 1871 / 960;
+  min-height: 0;
+  border-radius: 15px;
+  overflow: hidden;
+  background: #f8faf5;
+  box-shadow: 0 12px 40px rgba(10, 10, 16, 0.08);
+}
+.cs_pillar_clock_stage .cs_pillar_platform_carousel .carousel-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: center center;
+  border-radius: 15px;
+  transition: opacity 1s ease-in-out;
+}
+.cs_pillar_float_cards {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  z-index: 6;
+}
+.cs_pillar_clock_stage .cs_hero_float_card {
+  --clock-step: 90deg;
+  transform:
+    translate(-50%, -50%)
+    rotate(var(--clock-angle))
+    translateY(calc(-1 * var(--orbit-radius)))
+    rotate(calc(-1 * var(--clock-angle)));
+}
+.cs_pillar_float_1 { --clock-i: 0; }
+.cs_pillar_float_2 { --clock-i: 1; }
+.cs_pillar_float_3 { --clock-i: 2; }
+.cs_pillar_float_4 { --clock-i: 3; }
+
+@media (max-width: 991px) {
+  .cs_pillar_clock_stage {
+    --orbit-radius: 0;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .cs_pillar_clock_stage .cs_pillar_platform_carousel {
+    width: 100%;
+    max-width: 420px;
+    aspect-ratio: 1871 / 960;
+    min-height: 0;
+    order: 1;
+  }
+  .cs_pillar_float_cards {
+    position: static;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    pointer-events: auto;
+  }
+  .cs_pillar_clock_stage .cs_hero_float_card {
+    position: static;
+    transform: none;
+    font-size: 11px;
+    padding: 0;
+    animation: none;
+  }
+  .cs_pillar_clock_stage .cs_hero_float_card_inner {
+    padding: 7px 12px;
+    animation: cs_hero_float_drift 5.5s ease-in-out infinite;
+    animation-delay: var(--float-delay);
+  }
+}
+
+/* Nutrition Farming Cycle (videos) section — balanced title + intro */
+.cs_nf_cycle_heading .cs_section_title {
+  text-wrap: balance;
+  line-height: 1.15;
+}
+
+/* Pillar deep-dive sections (Guidance, Resilience, Organisation, Wisdom) */
+.cs_pillar_section .cs_list_icon i {
+  font-size: 20px;
+}
+.cs_pillar_section .cs_btn {
+  margin-top: 28px;
+}
+
+/* CTA button group spacing */
+.cs_cta .cs_btn_group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+}
+
+/* Responsive — home page sections */
+@media (max-width: 1199px) {
+  .cs_hero_clock_stage {
+    --orbit-radius: 225px;
+  }
+  .cs_home_hero .cs_hero_clock_stage .cs_hero_platform_carousel,
+  .cs_home_hero.cs_hero.cs_style_1.cs_type_3 .cs_hero_clock_stage .cs_hero_platform_carousel {
+    width: min(500px, 92%);
+  }
+  .cs_hero_float_card {
+    font-size: 10px;
+    padding: 7px 10px;
+  }
+}
+
+@media (max-width: 991px) {
+  .cs_trust_bar_inner {
+    gap: 20px 28px;
+  }
+  .cs_trust_text {
+    white-space: normal;
+    font-size: 14px;
+  }
+  .cs_problem_card {
+    padding: 32px 28px;
+  }
+  .cs_journey_arrow {
+    display: none;
+  }
+  .cs_journey_step {
+    flex: 1 1 calc(50% - 12px);
+    max-width: none;
+  }
+  .cs_hero_clock_stage {
+    min-height: auto;
+    flex-direction: column;
+    gap: 20px;
+    --orbit-radius: 0;
+  }
+  .cs_home_hero .cs_hero_clock_stage .cs_hero_platform_carousel {
+    width: 100%;
+    max-width: 420px;
+    order: 1;
+  }
+  .cs_hero_float_cards {
+    position: static;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    order: 2;
+    pointer-events: auto;
+  }
+  .cs_hero_float_card {
+    position: static;
+    font-size: 11px;
+    padding: 7px 12px;
+    white-space: normal;
+    transform: none;
+    animation: none;
+  }
+  .cs_hero_float_card:has(.cs_hero_float_card_inner) {
+    padding: 0;
+  }
+  .cs_hero_float_card_inner {
+    padding: 7px 12px;
+    animation: cs_hero_float_drift 5.5s ease-in-out infinite;
+    animation-delay: var(--float-delay);
+  }
+}
+
+@media (max-width: 575px) {
+  .cs_trust_item {
+    flex: 1 1 100%;
+    justify-content: center;
+  }
+  .cs_journey_step {
+    flex: 1 1 100%;
+  }
+  .cs_home_hero .cs_hero_title {
+    font-size: 36px !important;
   }
 }
