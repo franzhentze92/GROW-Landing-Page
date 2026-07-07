@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+  <head>
+    <!-- Meta Tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="NTS G.R.O.W Agronomist — the intelligence layer inside NTS G.R.O.W, connecting the Blueprint, Brain, dashboard modules and chatbot/avatar to guide smarter agronomic decisions.">
+    <meta name="author" content="NTS G.R.O.W">
+    <!-- Favicon Icon -->
+    <link rel="icon" href="assets/img/favicon.png">
+    <!-- Site Title -->
+    <title>NTS G.R.O.W Agronomist — The Intelligence Layer for Nutrition Farming</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/fontawesome.min.css">
+    <link rel="stylesheet" href="assets/css/animate.css">
+    <link rel="stylesheet" href="assets/css/odometer.css">
+    <link rel="stylesheet" href="assets/css/slick.min.css">
+    <link rel="stylesheet" href="assets/css/style.css?v=20260528">
+    <style>
+      /* ===========================================================
+         G.R.O.W Agronomist — full-screen slide presentation
+         Backgrounds aligned with site: white + light green tint
+         Scoped under .cs_agr_page to avoid clashing with site styles
+      ============================================================ */
+      .cs_agr_page {
+        --agr-white: #ffffff;
+        --agr-green: #f2f7e8;
+        --agr-ink: #1f2418;
+        --agr-muted: #55604a;
+        --agr-accent: #8cb43a;
+        color: var(--agr-ink);
+      }
+      /* Every slide = one laptop screen tall */
+      .cs_agr_slide {
+        position: relative;
+        overflow: hidden;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+      }
+      .cs_agr_slide.cs_agr_white { background: var(--agr-white); }
+      .cs_agr_slide.cs_agr_green { background: var(--agr-green); }
+      .cs_agr_inner {
+        width: 100%;
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 64px 24px;
+      }
+      @media (max-width: 991px) {
+        .cs_agr_inner { padding: 80px 20px; }
+      }
+      .cs_agr_badge {
+        display: inline-block;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--agr-accent);
+        background: rgba(140, 180, 58, 0.12);
+        border: 1px solid rgba(140, 180, 58, 0.28);
+        padding: 6px 14px;
+        border-radius: 999px;
+        margin-bottom: 22px;
+      }
+      .cs_agr_eyebrow {
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--agr-accent);
+        margin-bottom: 16px;
+      }
+      .cs_agr_title {
+        font-size: 46px;
+        line-height: 1.1;
+        font-weight: 700;
+        color: var(--agr-ink);
+        margin-bottom: 22px;
+      }
+      .cs_agr_title_lg {
+        font-size: 58px;
+        line-height: 1.05;
+      }
+      @media (max-width: 991px) {
+        .cs_agr_title { font-size: 32px; }
+        .cs_agr_title_lg { font-size: 38px; }
+      }
+      .cs_agr_lead {
+        font-size: 19px;
+        line-height: 1.65;
+        color: var(--agr-muted);
+        margin-bottom: 18px;
+      }
+      .cs_agr_body {
+        font-size: 17px;
+        line-height: 1.7;
+        color: var(--agr-muted);
+        margin-bottom: 16px;
+      }
+      .cs_agr_subheading {
+        font-size: 15px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--agr-ink);
+        margin: 24px 0 16px;
+      }
+      .cs_agr_list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .cs_agr_list li {
+        position: relative;
+        padding-left: 32px;
+        margin-bottom: 13px;
+        font-size: 17px;
+        line-height: 1.5;
+        color: var(--agr-ink);
+      }
+      .cs_agr_list li::before {
+        content: "\f00c";
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+        position: absolute;
+        left: 0;
+        top: 2px;
+        color: var(--agr-accent);
+        font-size: 15px;
+      }
+      /* Split layout */
+      .cs_agr_split {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 56px;
+        align-items: center;
+        width: 100%;
+      }
+      @media (max-width: 991px) {
+        .cs_agr_split { grid-template-columns: 1fr; gap: 32px; }
+        .cs_agr_split.cs_agr_reverse .cs_agr_media { order: -1; }
+      }
+      /* Media placeholders */
+      .cs_agr_media {
+        position: relative;
+        border-radius: 18px;
+        overflow: hidden;
+        min-height: 360px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        border: 2px dashed rgba(140, 180, 58, 0.45);
+        background: rgba(140, 180, 58, 0.06);
+        color: var(--agr-muted);
+        padding: 24px;
+      }
+      .cs_agr_media.cs_agr_media_dark {
+        background: linear-gradient(160deg, #171b12 0%, #232b18 100%);
+        border-color: rgba(140, 180, 58, 0.5);
+        color: #cfd8c1;
+      }
+      .cs_agr_media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      /* When a real image is present, drop the placeholder frame */
+      .cs_agr_media:has(img) {
+        border: none;
+        background: none;
+        padding: 0;
+      }
+      /* Full-width image banner (used on the last two slides) */
+      .cs_agr_media_banner {
+        min-height: 0;
+        height: auto;
+        max-height: 42vh;
+        margin: 4px auto 8px;
+      }
+      .cs_agr_media_banner img {
+        height: auto;
+        max-height: 42vh;
+        object-fit: contain;
+      }
+      .cs_agr_media_ph_icon {
+        font-size: 40px;
+        color: var(--agr-accent);
+        margin-bottom: 14px;
+      }
+      .cs_agr_media_ph_label {
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 1.5;
+      }
+      /* Cover slide logo + meta */
+      .cs_agr_cover_logo {
+        width: 74px;
+        height: auto;
+        margin-bottom: 26px;
+      }
+      .cs_agr_meta {
+        margin-top: 30px;
+        font-size: 16px;
+        color: var(--agr-muted);
+      }
+      .cs_agr_meta strong { color: var(--agr-ink); font-weight: 700; }
+      /* Feature / icon grids */
+      .cs_agr_grid {
+        display: grid;
+        gap: 24px;
+        margin-top: 40px;
+      }
+      .cs_agr_grid_3 { grid-template-columns: repeat(3, 1fr); }
+      .cs_agr_grid_4 { grid-template-columns: repeat(4, 1fr); }
+      @media (max-width: 991px) {
+        .cs_agr_grid_3, .cs_agr_grid_4 { grid-template-columns: 1fr; }
+      }
+      .cs_agr_card {
+        background: #ffffff;
+        border: 1px solid rgba(31, 36, 24, 0.08);
+        border-radius: 16px;
+        padding: 28px 24px;
+        box-shadow: 0 10px 30px rgba(31, 36, 24, 0.05);
+        height: 100%;
+      }
+      .cs_agr_card_icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 54px;
+        height: 54px;
+        border-radius: 13px;
+        background: rgba(140, 180, 58, 0.12);
+        color: var(--agr-accent);
+        font-size: 22px;
+        margin-bottom: 18px;
+      }
+      .cs_agr_card h4 {
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--agr-ink);
+        margin-bottom: 10px;
+      }
+      .cs_agr_card p {
+        font-size: 15.5px;
+        line-height: 1.6;
+        color: var(--agr-muted);
+        margin: 0;
+      }
+      .cs_agr_closing {
+        margin-top: 36px;
+        padding: 22px 26px;
+        border-left: 4px solid var(--agr-accent);
+        background: rgba(140, 180, 58, 0.1);
+        border-radius: 0 12px 12px 0;
+        font-size: 17px;
+        line-height: 1.6;
+        color: var(--agr-ink);
+      }
+      /* Flow diagram */
+      .cs_agr_flow {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        margin: 8px auto 0;
+        max-width: 440px;
+      }
+      .cs_agr_flow_node {
+        width: 100%;
+        text-align: center;
+        padding: 16px 20px;
+        border-radius: 14px;
+        font-weight: 700;
+        font-size: 18px;
+        border: 1px solid rgba(140, 180, 58, 0.3);
+      }
+      .cs_agr_flow_node.n1 { background: var(--agr-accent); color: #fff; }
+      .cs_agr_flow_node.n2 { background: rgba(140, 180, 58, 0.28); color: var(--agr-ink); }
+      .cs_agr_flow_node.n3 { background: rgba(140, 180, 58, 0.16); color: var(--agr-ink); }
+      .cs_agr_flow_node.n4 { background: #ffffff; color: var(--agr-ink); }
+      .cs_agr_flow_arrow {
+        color: var(--agr-accent);
+        font-size: 18px;
+        padding: 6px 0;
+      }
+      /* Comparison scenarios */
+      .cs_agr_compare {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        margin-top: 44px;
+      }
+      @media (max-width: 991px) {
+        .cs_agr_compare { grid-template-columns: 1fr; }
+      }
+      .cs_agr_compare_card {
+        border-radius: 16px;
+        padding: 26px 24px;
+        background: #ffffff;
+        border: 1px solid rgba(31, 36, 24, 0.08);
+      }
+      .cs_agr_compare_card.is_good {
+        border: 1px solid rgba(140, 180, 58, 0.5);
+        background: rgba(140, 180, 58, 0.08);
+      }
+      .cs_agr_compare_card h4 {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 19px;
+        font-weight: 700;
+        color: var(--agr-ink);
+        margin-bottom: 12px;
+      }
+      .cs_agr_compare_card.is_bad h4 i { color: #c0603a; }
+      .cs_agr_compare_card.is_good h4 i { color: var(--agr-accent); }
+      .cs_agr_compare_card p {
+        font-size: 15.5px;
+        line-height: 1.6;
+        color: var(--agr-muted);
+        margin: 0;
+      }
+      .cs_agr_center { text-align: center; }
+      .cs_agr_center .cs_agr_lead { max-width: 820px; margin-left: auto; margin-right: auto; }
+      /* Closing / ending slide */
+      .cs_agr_slide.cs_agr_end {
+        background: radial-gradient(ellipse 90% 80% at 50% 0%, #223016 0%, #12160e 55%, #0b0d08 100%);
+        color: #eef3e6;
+        text-align: center;
+      }
+      .cs_agr_end .cs_agr_inner {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      .cs_agr_end_logo {
+        width: 96px;
+        height: auto;
+        margin-bottom: 34px;
+        filter: drop-shadow(0 8px 24px rgba(140, 180, 58, 0.35));
+      }
+      .cs_agr_end_title {
+        font-size: 60px;
+        line-height: 1.05;
+        font-weight: 700;
+        color: #ffffff;
+        margin-bottom: 22px;
+      }
+      .cs_agr_end_sub {
+        font-size: 20px;
+        line-height: 1.6;
+        color: #b9c6a7;
+        max-width: 720px;
+        margin: 0 auto 40px;
+      }
+      @media (max-width: 991px) {
+        .cs_agr_end_title { font-size: 40px; }
+        .cs_agr_end_sub { font-size: 17px; }
+      }
+      .cs_agr_end_actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        justify-content: center;
+      }
+      .cs_agr_end_btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 15px 34px;
+        border-radius: 999px;
+        font-size: 16px;
+        font-weight: 700;
+        text-decoration: none;
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+      }
+      .cs_agr_end_btn.is_primary {
+        background: var(--agr-accent);
+        color: #10140b;
+        box-shadow: 0 12px 30px rgba(140, 180, 58, 0.35);
+      }
+      .cs_agr_end_btn.is_ghost {
+        background: transparent;
+        color: #eef3e6;
+        border: 1px solid rgba(238, 243, 230, 0.35);
+      }
+      .cs_agr_end_btn:hover {
+        transform: translateY(-2px);
+      }
+      .cs_agr_end_divider {
+        width: 70px;
+        height: 4px;
+        border-radius: 999px;
+        background: var(--agr-accent);
+        margin: 0 auto 30px;
+      }
+      .cs_agr_end_foot {
+        margin-top: 52px;
+        font-size: 14px;
+        letter-spacing: 0.04em;
+        color: #7f8d6c;
+      }
+      /* Video slides */
+      .cs_agr_video_wrap {
+        width: 100%;
+        max-width: 1040px;
+        margin: 0 auto;
+        text-align: center;
+      }
+      .cs_agr_video_wrap video {
+        width: 100%;
+        max-height: 74vh;
+        border-radius: 18px;
+        background: #000;
+        box-shadow: 0 20px 50px rgba(31, 36, 24, 0.16);
+        display: block;
+      }
+    </style>
+  </head>
+  <body class="cs_agr_page">
+    <!-- Start Preloader -->
+    <div class="cs_preloader cs_white_bg">
+      <div class="cs_preloader_in position-relative"><span></span><span></span></div>
+    </div>
+    <!-- End Preloader -->
+
+    <!-- ===================== SLIDE 1 — COVER ===================== -->
+    <section class="cs_agr_slide cs_agr_white" id="agr-cover">
+      <div class="cs_agr_inner">
+        <div class="cs_agr_split">
+          <div class="cs_agr_cover_text">
+            <img src="assets/img/NTS G.R.O.W Logo .png" alt="NTS G.R.O.W" class="cs_agr_cover_logo">
+            <h1 class="cs_agr_title cs_agr_title_lg">NTS G.R.O.W Agronomist</h1>
+            <p class="cs_agr_lead">The intelligence layer inside NTS G.R.O.W — connecting the Blueprint, Brain, dashboard modules, and chatbot/avatar to guide smarter agronomic decisions.</p>
+          </div>
+          <div class="cs_agr_media cs_agr_media_dark">
+            <img src="assets/img/grow-agronomist/1.png" alt="NTS G.R.O.W Agronomist dashboard">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SLIDE 2 — THE PROBLEM ===================== -->
+    <section class="cs_agr_slide cs_agr_green" id="agr-problem">
+      <div class="cs_agr_inner">
+        <div class="cs_agr_split cs_agr_reverse">
+          <div class="cs_agr_media">
+            <img src="assets/img/grow-agronomist/2.jpg" alt="Fragmented farm data — paper maps and documents">
+          </div>
+          <div>
+            <span class="cs_agr_badge">The Problem</span>
+            <h2 class="cs_agr_title">Farm Data Is Fragmented — and That's Costly</h2>
+            <p class="cs_agr_body">Modern farms generate an enormous volume of data — across paddocks, soil tests, leaf and sap reports, satellite imagery, weather feeds, irrigation and fertigation logs, spray records, field observations, pest and disease reports, activity logs, and financial records. But this data rarely lives in one place.</p>
+            <p class="cs_agr_body">When data is fragmented, it cannot be connected. And when data cannot be connected, AI cannot reason properly. The result is generic advice with no real understanding of your specific farm.</p>
+            <div class="cs_agr_subheading">The core challenge</div>
+            <ul class="cs_agr_list">
+              <li>Paddock, soil, and leaf/sap data live in separate tools</li>
+              <li>Satellite, weather, and irrigation data aren't connected to farm context</li>
+              <li>Field, pest, disease, and financial records are scattered</li>
+              <li>Without structure, AI gives generic, unreliable answers</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SLIDE 3 — G.R.O.W BLUEPRINT ===================== -->
+    <section class="cs_agr_slide cs_agr_white" id="agr-blueprint">
+      <div class="cs_agr_inner">
+        <span class="cs_agr_eyebrow">Layer 1</span>
+        <h2 class="cs_agr_title">G.R.O.W Blueprint</h2>
+        <p class="cs_agr_lead">The Blueprint is a Setup Wizard — a guided, step-by-step process that walks farmers through entering all the information the G.R.O.W Agronomist needs to work at its best. From farm boundaries, paddock structure, soil data, leaf and sap analysis, irrigation setup, weather feeds, satellite connections, field activities, crop protection programs, and financial records.</p>
+        <div class="cs_agr_grid cs_agr_grid_4">
+          <div class="cs_agr_card">
+            <span class="cs_agr_card_icon"><i class="fa-solid fa-draw-polygon"></i></span>
+            <h4>Farm and Paddock Structure</h4>
+            <p>Boundaries, paddocks, crops, and spatial layout mapped and verified.</p>
+          </div>
+          <div class="cs_agr_card">
+            <span class="cs_agr_card_icon"><i class="fa-solid fa-flask"></i></span>
+            <h4>Soil, Leaf, Sap and Water Data</h4>
+            <p>Lab results linked directly to paddocks for precise nutritional context.</p>
+          </div>
+          <div class="cs_agr_card">
+            <span class="cs_agr_card_icon"><i class="fa-solid fa-satellite"></i></span>
+            <h4>Irrigation, Weather &amp; Satellite</h4>
+            <p>Irrigation setup, weather feeds, and satellite imagery structured and connected.</p>
+          </div>
+          <div class="cs_agr_card">
+            <span class="cs_agr_card_icon"><i class="fa-solid fa-clipboard-list"></i></span>
+            <h4>Activities, Finance &amp; Farm Management</h4>
+            <p>Field activities, nutrition/crop protection programs, financial records, inventory, and farm management data.</p>
+          </div>
+        </div>
+        <div class="cs_agr_closing">The Blueprint tracks data completeness across every farm layer — so the platform always knows what's ready and what's missing before reasoning begins.</div>
+      </div>
+    </section>
+
+    <!-- ===================== VIDEO — G.R.O.W BLUEPRINT ===================== -->
+    <section class="cs_agr_slide cs_agr_green" id="agr-blueprint-video">
+      <div class="cs_agr_inner">
+        <div class="cs_agr_center">
+          <span class="cs_agr_eyebrow">Layer 1 in action</span>
+          <h2 class="cs_agr_title">G.R.O.W Blueprint</h2>
+        </div>
+        <div class="cs_agr_video_wrap">
+          <video controls playsinline preload="metadata">
+            <source src="https://votnfjvhcgomgdcaspnb.supabase.co/storage/v1/object/public/trazabilidad-media/trazabilidad/GROW%20Blueprint.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SLIDE 4 — G.R.O.W BRAIN ===================== -->
+    <section class="cs_agr_slide cs_agr_white" id="agr-brain">
+      <div class="cs_agr_inner">
+        <span class="cs_agr_eyebrow">Layer 2</span>
+        <h2 class="cs_agr_title">G.R.O.W Brain</h2>
+        <div class="cs_agr_split">
+          <div>
+            <div class="cs_agr_subheading">What the Brain does</div>
+            <ul class="cs_agr_list">
+              <li>Reads and connects all Blueprint data</li>
+              <li>Correlates parameters across the whole farm</li>
+              <li>Understands full agronomic context</li>
+              <li>Detects missing data and flags risks</li>
+              <li>Identifies opportunities before they're obvious</li>
+              <li>Delivers answers through chat and voice</li>
+            </ul>
+          </div>
+          <div>
+            <p class="cs_agr_body">The G.R.O.W Brain is not a search engine or a generic AI assistant. It is a purpose-built agronomic intelligence layer trained to understand the relationships between soil health, crop nutrition, weather patterns, pest cycles, irrigation needs, and financial outcomes.</p>
+            <p class="cs_agr_body">It produces actionable recommendations, seasonal plans, risk alerts, and clear explanations — delivered through natural language, whenever you need them.</p>
+          </div>
+        </div>
+        <div class="cs_agr_grid cs_agr_grid_4">
+          <div class="cs_agr_card">
+            <span class="cs_agr_card_icon"><i class="fa-solid fa-link"></i></span>
+            <h4>Correlates</h4>
+            <p>Connects data across all farm parameters.</p>
+          </div>
+          <div class="cs_agr_card">
+            <span class="cs_agr_card_icon"><i class="fa-solid fa-triangle-exclamation"></i></span>
+            <h4>Detects</h4>
+            <p>Flags risks, gaps, and emerging issues.</p>
+          </div>
+          <div class="cs_agr_card">
+            <span class="cs_agr_card_icon"><i class="fa-solid fa-lightbulb"></i></span>
+            <h4>Recommends</h4>
+            <p>Generates plans and actionable advice.</p>
+          </div>
+          <div class="cs_agr_card">
+            <span class="cs_agr_card_icon"><i class="fa-solid fa-comment-dots"></i></span>
+            <h4>Explains</h4>
+            <p>Answers questions through chat and voice.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== VIDEO — G.R.O.W BRAIN ===================== -->
+    <section class="cs_agr_slide cs_agr_green" id="agr-brain-video">
+      <div class="cs_agr_inner">
+        <div class="cs_agr_center">
+          <span class="cs_agr_eyebrow">Layer 2 in action</span>
+          <h2 class="cs_agr_title">G.R.O.W Brain</h2>
+        </div>
+        <div class="cs_agr_video_wrap">
+          <video controls playsinline preload="metadata">
+            <source src="https://votnfjvhcgomgdcaspnb.supabase.co/storage/v1/object/public/trazabilidad-media/trazabilidad/GROW%20Brain.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SLIDE 5 — TWO LAYERS ===================== -->
+    <section class="cs_agr_slide cs_agr_white" id="agr-layers">
+      <div class="cs_agr_inner">
+        <div class="cs_agr_center">
+          <h2 class="cs_agr_title">Two Layers. One Intelligence.</h2>
+          <p class="cs_agr_lead">The G.R.O.W Agronomist is only possible when both layers operate together. The Blueprint provides the structured, validated farm data. The Brain transforms that data into intelligent agronomic reasoning.</p>
+        </div>
+        <div class="cs_agr_flow">
+          <div class="cs_agr_flow_node n1">G.R.O.W Agronomist</div>
+          <div class="cs_agr_flow_arrow"><i class="fa-solid fa-arrow-up"></i></div>
+          <div class="cs_agr_flow_node n2">G.R.O.W Brain</div>
+          <div class="cs_agr_flow_arrow"><i class="fa-solid fa-arrow-up"></i></div>
+          <div class="cs_agr_flow_node n3">G.R.O.W Blueprint</div>
+          <div class="cs_agr_flow_arrow"><i class="fa-solid fa-arrow-up"></i></div>
+          <div class="cs_agr_flow_node n4">Farm Data</div>
+        </div>
+        <div class="cs_agr_compare">
+          <div class="cs_agr_compare_card is_bad">
+            <h4><i class="fa-solid fa-circle-xmark"></i> No Blueprint</h4>
+            <p>No reliable context. The AI is reasoning blind — outputs are generic and untrustworthy.</p>
+          </div>
+          <div class="cs_agr_compare_card is_bad">
+            <h4><i class="fa-solid fa-circle-xmark"></i> No Brain</h4>
+            <p>No intelligent reasoning. Data sits idle — collected but never connected or acted upon.</p>
+          </div>
+          <div class="cs_agr_compare_card is_good">
+            <h4><i class="fa-solid fa-circle-check"></i> Blueprint + Brain</h4>
+            <p>Real agronomic intelligence — structured data meets contextual reasoning at farm scale.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== VIDEO — G.R.O.W AGRONOMIST ===================== -->
+    <section class="cs_agr_slide cs_agr_green" id="agr-agronomist-video">
+      <div class="cs_agr_inner">
+        <div class="cs_agr_center">
+          <span class="cs_agr_eyebrow">The two layers together</span>
+          <h2 class="cs_agr_title">G.R.O.W Agronomist</h2>
+        </div>
+        <div class="cs_agr_video_wrap">
+          <video controls playsinline preload="metadata">
+            <source src="https://votnfjvhcgomgdcaspnb.supabase.co/storage/v1/object/public/trazabilidad-media/trazabilidad/GROW%20Agronomist.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SLIDE 6 — DIGITAL AGRONOMIST ===================== -->
+    <section class="cs_agr_slide cs_agr_white" id="agr-digital">
+      <div class="cs_agr_inner">
+        <div class="cs_agr_center">
+          <h2 class="cs_agr_title">The G.R.O.W Digital Agronomist Is Here</h2>
+          <p class="cs_agr_lead">G.R.O.W Agronomist becomes the digital agronomist inside the platform — always connected to the farm, always learning from the data, and always ready to guide better decisions.</p>
+        </div>
+        <div class="cs_agr_media cs_agr_media_banner">
+          <img src="assets/img/grow-agronomist/3.png" alt="The G.R.O.W Digital Agronomist">
+        </div>
+        <div class="cs_agr_grid cs_agr_grid_3">
+          <div class="cs_agr_card">
+            <span class="cs_agr_card_icon"><i class="fa-solid fa-satellite-dish"></i></span>
+            <h4>Always Connected</h4>
+            <p>Live to every layer of your farm — from satellite to soil test.</p>
+          </div>
+          <div class="cs_agr_card">
+            <span class="cs_agr_card_icon"><i class="fa-solid fa-arrows-rotate"></i></span>
+            <h4>Always Learning</h4>
+            <p>Continuously updated as new data, observations, and results come in.</p>
+          </div>
+          <div class="cs_agr_card">
+            <span class="cs_agr_card_icon"><i class="fa-solid fa-headset"></i></span>
+            <h4>Always Ready</h4>
+            <p>Available through chat and voice — wherever decisions are made.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SLIDE 7 — META GLASSES ===================== -->
+    <section class="cs_agr_slide cs_agr_green" id="agr-glasses">
+      <div class="cs_agr_inner">
+        <div class="cs_agr_center">
+          <h2 class="cs_agr_title">In the Field, Hands-Free: G.R.O.W on Meta Glasses</h2>
+          <p class="cs_agr_lead">Empower your team with real-time agronomic intelligence directly in the field. With G.R.O.W on Meta Glasses, farmers and agronomists can interact with the Agronomist hands-free, seamlessly integrating field observations, voice queries, and instant data capture into daily operations.</p>
+        </div>
+        <div class="cs_agr_media cs_agr_media_banner">
+          <img src="assets/img/grow-agronomist/4.png" alt="G.R.O.W on Meta Glasses in the field">
+        </div>
+        <div class="cs_agr_grid cs_agr_grid_3">
+          <div class="cs_agr_card">
+            <span class="cs_agr_card_icon"><i class="fa-solid fa-microphone"></i></span>
+            <h4>Voice Conversations</h4>
+            <p>Ask questions by voice and receive instant agronomic answers and recommendations on the spot, without breaking stride.</p>
+          </div>
+          <div class="cs_agr_card">
+            <span class="cs_agr_card_icon"><i class="fa-solid fa-camera"></i></span>
+            <h4>Capture &amp; Log</h4>
+            <p>Snap pictures of crops, pests, or disease with a glance; observations are automatically logged and linked to the specific paddock.</p>
+          </div>
+          <div class="cs_agr_card">
+            <span class="cs_agr_card_icon"><i class="fa-solid fa-hand"></i></span>
+            <h4>Hands-Free Data Entry</h4>
+            <p>Record field notes, activities, and data entries using only your voice, syncing directly into the G.R.O.W Blueprint.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SLIDE 8 — CLOSING ===================== -->
+    <section class="cs_agr_slide cs_agr_end" id="agr-end">
+      <div class="cs_agr_inner">
+        <img src="assets/img/NTS G.R.O.W Logo .png" alt="NTS G.R.O.W" class="cs_agr_end_logo">
+        <div class="cs_agr_end_divider"></div>
+        <h2 class="cs_agr_end_title">From Soil Intelligence<br>to Smarter Decisions</h2>
+        <p class="cs_agr_end_sub">NTS G.R.O.W Agronomist connects the Blueprint, the Brain, and every layer of your farm — turning fragmented data into intelligent agronomic guidance, wherever the work happens.</p>
+        <div class="cs_agr_end_foot">NTS G.R.O.W — Nutrition Farming, Digitally Managed</div>
+      </div>
+    </section>
+
+    <!-- Start Scroll Up Button -->
+    <button type="button" aria-label="Scroll to top button" class="cs_scrollup cs_purple_bg cs_white_color cs_radius_100 cs_accent_hover">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 10L1.7625 11.7625L8.75 4.7875V20H11.25V4.7875L18.225 11.775L20 10L10 0L0 10Z" fill="currentColor" />
+      </svg>
+    </button>
+    <!-- End Scroll Up Button -->
+    <!-- Script -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/wow.min.js"></script>
+    <script src="assets/js/jquery.slick.min.js"></script>
+    <script src="assets/js/odometer.js"></script>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
