@@ -42,10 +42,85 @@
       .cs_agr_slide.cs_agr_white { background: var(--agr-white); }
       .cs_agr_slide.cs_agr_green { background: var(--agr-green); }
       .cs_agr_inner {
+        position: relative;
+        z-index: 2;
         width: 100%;
         max-width: 1180px;
         margin: 0 auto;
         padding: 64px 24px;
+      }
+      /* Floating agri-tech decor (cover slide) */
+      .cs_agr_float_layer {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        pointer-events: none;
+        overflow: hidden;
+      }
+      .cs_agr_float {
+        position: absolute;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 62px;
+        height: 62px;
+        border-radius: 16px;
+        background: rgba(140, 180, 58, 0.1);
+        border: 1px solid rgba(140, 180, 58, 0.22);
+        color: var(--agr-accent);
+        font-size: 24px;
+        backdrop-filter: blur(2px);
+        box-shadow: 0 10px 30px rgba(31, 36, 24, 0.06);
+        animation: cs_agr_drift 9s ease-in-out infinite;
+      }
+      .cs_agr_float.f1 { top: 16%; left: 8%; font-size: 26px; animation-duration: 8s; }
+      .cs_agr_float.f2 { top: 68%; left: 5%; width: 52px; height: 52px; font-size: 20px; animation-duration: 10s; animation-delay: -2s; }
+      .cs_agr_float.f3 { top: 80%; left: 40%; width: 48px; height: 48px; font-size: 19px; animation-duration: 7.5s; animation-delay: -1s; }
+      .cs_agr_float.f4 { top: 10%; right: 6%; animation-duration: 11s; animation-delay: -3s; }
+      .cs_agr_float.f5 { top: 46%; right: 3%; width: 54px; height: 54px; font-size: 21px; animation-duration: 9.5s; animation-delay: -1.5s; }
+      .cs_agr_float.f6 { top: 86%; right: 12%; width: 50px; height: 50px; font-size: 20px; animation-duration: 8.5s; animation-delay: -4s; }
+      /* Neural-network / AI themed floats — slightly different tint */
+      .cs_agr_float_ai {
+        background: rgba(140, 180, 58, 0.14);
+        border-color: rgba(140, 180, 58, 0.3);
+      }
+      .cs_agr_float.f7 { top: 34%; left: 4%; font-size: 27px; animation-duration: 9s; animation-delay: -1s; }
+      .cs_agr_float.f8 { top: 52%; left: 18%; width: 52px; height: 52px; font-size: 20px; animation-duration: 10.5s; animation-delay: -3s; }
+      .cs_agr_float.f9 { top: 6%; left: 40%; width: 54px; height: 54px; font-size: 22px; animation-duration: 8s; animation-delay: -2.5s; }
+      .cs_agr_float.f10 { top: 28%; right: 16%; width: 52px; height: 52px; font-size: 20px; animation-duration: 9.5s; animation-delay: -0.5s; }
+      .cs_agr_float.f11 { top: 64%; right: 20%; font-size: 25px; animation-duration: 11s; animation-delay: -4s; }
+      .cs_agr_float.f12 { top: 88%; left: 26%; width: 50px; height: 50px; font-size: 21px; animation-duration: 7.5s; animation-delay: -1.5s; }
+      .cs_agr_dot {
+        position: absolute;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: var(--agr-accent);
+        opacity: 0.5;
+        animation: cs_agr_float_dot 6s ease-in-out infinite;
+      }
+      .cs_agr_dot.d1 { top: 30%; left: 24%; animation-duration: 6s; }
+      .cs_agr_dot.d2 { top: 58%; left: 33%; width: 8px; height: 8px; animation-duration: 7s; animation-delay: -2s; }
+      .cs_agr_dot.d3 { top: 22%; right: 26%; width: 9px; height: 9px; animation-duration: 5.5s; animation-delay: -1s; }
+      .cs_agr_dot.d4 { top: 72%; right: 30%; animation-duration: 8s; animation-delay: -3s; }
+      .cs_agr_dot.d5 { top: 90%; left: 62%; width: 7px; height: 7px; animation-duration: 6.5s; animation-delay: -0.5s; }
+      .cs_agr_dot.d6 { top: 40%; left: 48%; width: 9px; height: 9px; animation-duration: 7.5s; animation-delay: -2.5s; }
+      .cs_agr_dot.d7 { top: 14%; right: 40%; width: 8px; height: 8px; animation-duration: 6s; animation-delay: -3.5s; }
+      @media (max-width: 991px) {
+        .cs_agr_float, .cs_agr_dot { display: none; }
+      }
+      @keyframes cs_agr_drift {
+        0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+        25% { transform: translate3d(6px, -14px, 0) rotate(3deg); }
+        50% { transform: translate3d(-4px, -8px, 0) rotate(-2deg); }
+        75% { transform: translate3d(3px, -16px, 0) rotate(2deg); }
+      }
+      @keyframes cs_agr_float_dot {
+        0%, 100% { transform: translateY(0); opacity: 0.5; }
+        50% { transform: translateY(-18px); opacity: 0.9; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .cs_agr_float, .cs_agr_dot { animation: none; }
       }
       @media (max-width: 991px) {
         .cs_agr_inner { padding: 80px 20px; }
@@ -197,9 +272,13 @@
       }
       /* Cover slide logo + meta */
       .cs_agr_cover_logo {
-        width: 74px;
+        display: block;
+        width: 150px;
         height: auto;
-        margin-bottom: 26px;
+        margin: 0 auto 28px;
+      }
+      @media (max-width: 991px) {
+        .cs_agr_cover_logo { width: 118px; }
       }
       .cs_agr_meta {
         margin-top: 30px;
@@ -326,6 +405,68 @@
       }
       .cs_agr_center { text-align: center; }
       .cs_agr_center .cs_agr_lead { max-width: 820px; margin-left: auto; margin-right: auto; }
+      /* Split variant with a larger media column (image bigger on the right) */
+      .cs_agr_split.cs_agr_split_media_lg {
+        grid-template-columns: 0.85fr 1.15fr;
+        gap: 48px;
+      }
+      .cs_agr_split.cs_agr_split_media_lg.cs_agr_media_left {
+        grid-template-columns: 1.15fr 0.85fr;
+      }
+      @media (max-width: 991px) {
+        .cs_agr_split.cs_agr_split_media_lg,
+        .cs_agr_split.cs_agr_split_media_lg.cs_agr_media_left { grid-template-columns: 1fr; }
+      }
+      .cs_agr_media.cs_agr_media_tall {
+        min-height: 480px;
+        height: 100%;
+        border: none;
+        background: none;
+        padding: 0;
+      }
+      .cs_agr_media.cs_agr_media_tall img {
+        border-radius: 18px;
+        box-shadow: 0 18px 46px rgba(31, 36, 24, 0.16);
+      }
+      @media (max-width: 991px) {
+        .cs_agr_media.cs_agr_media_tall { min-height: 320px; }
+      }
+      /* Vertical feature list (icon + text) */
+      .cs_agr_feature_list {
+        margin-top: 28px;
+        display: flex;
+        flex-direction: column;
+        gap: 22px;
+      }
+      .cs_agr_feature {
+        display: flex;
+        gap: 16px;
+        align-items: flex-start;
+      }
+      .cs_agr_feature_icon {
+        flex: 0 0 auto;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        background: rgba(140, 180, 58, 0.14);
+        color: var(--agr-accent);
+        font-size: 19px;
+      }
+      .cs_agr_feature h4 {
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--agr-ink);
+        margin: 2px 0 5px;
+      }
+      .cs_agr_feature p {
+        font-size: 15.5px;
+        line-height: 1.55;
+        color: var(--agr-muted);
+        margin: 0;
+      }
       /* Closing / ending slide */
       .cs_agr_slide.cs_agr_end {
         background: radial-gradient(ellipse 90% 80% at 50% 0%, #223016 0%, #12160e 55%, #0b0d08 100%);
@@ -443,6 +584,28 @@
           </div>
         </div>
       </div>
+      <!-- Floating agri-tech + neural-network decor -->
+      <div class="cs_agr_float_layer" aria-hidden="true">
+        <span class="cs_agr_float f1"><i class="fa-solid fa-seedling"></i></span>
+        <span class="cs_agr_float f2"><i class="fa-solid fa-leaf"></i></span>
+        <span class="cs_agr_float f3"><i class="fa-solid fa-droplet"></i></span>
+        <span class="cs_agr_float f4"><i class="fa-solid fa-satellite"></i></span>
+        <span class="cs_agr_float f5"><i class="fa-solid fa-microchip"></i></span>
+        <span class="cs_agr_float f6"><i class="fa-solid fa-wheat-awn"></i></span>
+        <span class="cs_agr_float cs_agr_float_ai f7"><i class="fa-solid fa-brain"></i></span>
+        <span class="cs_agr_float cs_agr_float_ai f8"><i class="fa-solid fa-diagram-project"></i></span>
+        <span class="cs_agr_float cs_agr_float_ai f9"><i class="fa-solid fa-robot"></i></span>
+        <span class="cs_agr_float cs_agr_float_ai f10"><i class="fa-solid fa-share-nodes"></i></span>
+        <span class="cs_agr_float cs_agr_float_ai f11"><i class="fa-solid fa-atom"></i></span>
+        <span class="cs_agr_float cs_agr_float_ai f12"><i class="fa-solid fa-circle-nodes"></i></span>
+        <span class="cs_agr_dot d1"></span>
+        <span class="cs_agr_dot d2"></span>
+        <span class="cs_agr_dot d3"></span>
+        <span class="cs_agr_dot d4"></span>
+        <span class="cs_agr_dot d5"></span>
+        <span class="cs_agr_dot d6"></span>
+        <span class="cs_agr_dot d7"></span>
+      </div>
     </section>
 
     <!-- ===================== SLIDE 2 — THE PROBLEM ===================== -->
@@ -510,7 +673,7 @@
         </div>
         <div class="cs_agr_video_wrap">
           <video controls playsinline preload="metadata">
-            <source src="https://votnfjvhcgomgdcaspnb.supabase.co/storage/v1/object/public/trazabilidad-media/trazabilidad/GROW%20Blueprint.mp4" type="video/mp4">
+            <source src="https://votnfjvhcgomgdcaspnb.supabase.co/storage/v1/object/public/trazabilidad-media/trazabilidad/grow-blueprint.mp4" type="video/mp4">
             Your browser does not support the video tag.
           </video>
         </div>
@@ -573,7 +736,7 @@
         </div>
         <div class="cs_agr_video_wrap">
           <video controls playsinline preload="metadata">
-            <source src="https://votnfjvhcgomgdcaspnb.supabase.co/storage/v1/object/public/trazabilidad-media/trazabilidad/GROW%20Brain.mp4" type="video/mp4">
+            <source src="https://votnfjvhcgomgdcaspnb.supabase.co/storage/v1/object/public/trazabilidad-media/trazabilidad/grow-brain.mp4" type="video/mp4">
             Your browser does not support the video tag.
           </video>
         </div>
@@ -622,7 +785,7 @@
         </div>
         <div class="cs_agr_video_wrap">
           <video controls playsinline preload="metadata">
-            <source src="https://votnfjvhcgomgdcaspnb.supabase.co/storage/v1/object/public/trazabilidad-media/trazabilidad/GROW%20Agronomist.mp4" type="video/mp4">
+            <source src="https://votnfjvhcgomgdcaspnb.supabase.co/storage/v1/object/public/trazabilidad-media/trazabilidad/grow-agronomist.mp4" type="video/mp4">
             Your browser does not support the video tag.
           </video>
         </div>
@@ -632,28 +795,37 @@
     <!-- ===================== SLIDE 6 — DIGITAL AGRONOMIST ===================== -->
     <section class="cs_agr_slide cs_agr_white" id="agr-digital">
       <div class="cs_agr_inner">
-        <div class="cs_agr_center">
-          <h2 class="cs_agr_title">The G.R.O.W Digital Agronomist Is Here</h2>
-          <p class="cs_agr_lead">G.R.O.W Agronomist becomes the digital agronomist inside the platform — always connected to the farm, always learning from the data, and always ready to guide better decisions.</p>
-        </div>
-        <div class="cs_agr_media cs_agr_media_banner">
-          <img src="assets/img/grow-agronomist/3.png" alt="The G.R.O.W Digital Agronomist">
-        </div>
-        <div class="cs_agr_grid cs_agr_grid_3">
-          <div class="cs_agr_card">
-            <span class="cs_agr_card_icon"><i class="fa-solid fa-satellite-dish"></i></span>
-            <h4>Always Connected</h4>
-            <p>Live to every layer of your farm — from satellite to soil test.</p>
+        <div class="cs_agr_split cs_agr_split_media_lg cs_agr_media_left">
+          <div class="cs_agr_media cs_agr_media_tall">
+            <img src="assets/img/grow-agronomist/3.png" alt="The G.R.O.W Digital Agronomist">
           </div>
-          <div class="cs_agr_card">
-            <span class="cs_agr_card_icon"><i class="fa-solid fa-arrows-rotate"></i></span>
-            <h4>Always Learning</h4>
-            <p>Continuously updated as new data, observations, and results come in.</p>
-          </div>
-          <div class="cs_agr_card">
-            <span class="cs_agr_card_icon"><i class="fa-solid fa-headset"></i></span>
-            <h4>Always Ready</h4>
-            <p>Available through chat and voice — wherever decisions are made.</p>
+          <div>
+            <span class="cs_agr_badge">The Digital Agronomist</span>
+            <h2 class="cs_agr_title">The G.R.O.W Digital Agronomist Is Here</h2>
+            <p class="cs_agr_body">G.R.O.W Agronomist becomes the digital agronomist inside the platform — always connected to the farm, always learning from the data, and always ready to guide better decisions.</p>
+            <div class="cs_agr_feature_list">
+              <div class="cs_agr_feature">
+                <span class="cs_agr_feature_icon"><i class="fa-solid fa-satellite-dish"></i></span>
+                <div>
+                  <h4>Always Connected</h4>
+                  <p>Live to every layer of your farm — from satellite to soil test.</p>
+                </div>
+              </div>
+              <div class="cs_agr_feature">
+                <span class="cs_agr_feature_icon"><i class="fa-solid fa-arrows-rotate"></i></span>
+                <div>
+                  <h4>Always Learning</h4>
+                  <p>Continuously updated as new data, observations, and results come in.</p>
+                </div>
+              </div>
+              <div class="cs_agr_feature">
+                <span class="cs_agr_feature_icon"><i class="fa-solid fa-headset"></i></span>
+                <div>
+                  <h4>Always Ready</h4>
+                  <p>Available through chat and voice — wherever decisions are made.</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -662,28 +834,37 @@
     <!-- ===================== SLIDE 7 — META GLASSES ===================== -->
     <section class="cs_agr_slide cs_agr_green" id="agr-glasses">
       <div class="cs_agr_inner">
-        <div class="cs_agr_center">
-          <h2 class="cs_agr_title">In the Field, Hands-Free: G.R.O.W on Meta Glasses</h2>
-          <p class="cs_agr_lead">Empower your team with real-time agronomic intelligence directly in the field. With G.R.O.W on Meta Glasses, farmers and agronomists can interact with the Agronomist hands-free, seamlessly integrating field observations, voice queries, and instant data capture into daily operations.</p>
-        </div>
-        <div class="cs_agr_media cs_agr_media_banner">
-          <img src="assets/img/grow-agronomist/4.png" alt="G.R.O.W on Meta Glasses in the field">
-        </div>
-        <div class="cs_agr_grid cs_agr_grid_3">
-          <div class="cs_agr_card">
-            <span class="cs_agr_card_icon"><i class="fa-solid fa-microphone"></i></span>
-            <h4>Voice Conversations</h4>
-            <p>Ask questions by voice and receive instant agronomic answers and recommendations on the spot, without breaking stride.</p>
+        <div class="cs_agr_split cs_agr_split_media_lg">
+          <div>
+            <span class="cs_agr_badge">In the Field</span>
+            <h2 class="cs_agr_title">Hands-Free: G.R.O.W on Meta Glasses</h2>
+            <p class="cs_agr_body">Empower your team with real-time agronomic intelligence directly in the field. With G.R.O.W on Meta Glasses, farmers and agronomists interact with the Agronomist hands-free — integrating field observations, voice queries, and instant data capture into daily operations.</p>
+            <div class="cs_agr_feature_list">
+              <div class="cs_agr_feature">
+                <span class="cs_agr_feature_icon"><i class="fa-solid fa-microphone"></i></span>
+                <div>
+                  <h4>Voice Conversations</h4>
+                  <p>Ask questions by voice and receive instant agronomic answers on the spot, without breaking stride.</p>
+                </div>
+              </div>
+              <div class="cs_agr_feature">
+                <span class="cs_agr_feature_icon"><i class="fa-solid fa-camera"></i></span>
+                <div>
+                  <h4>Capture &amp; Log</h4>
+                  <p>Snap pictures of crops, pests, or disease with a glance; observations are logged and linked to the paddock.</p>
+                </div>
+              </div>
+              <div class="cs_agr_feature">
+                <span class="cs_agr_feature_icon"><i class="fa-solid fa-hand"></i></span>
+                <div>
+                  <h4>Hands-Free Data Entry</h4>
+                  <p>Record field notes and activities using only your voice, syncing directly into the G.R.O.W Blueprint.</p>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="cs_agr_card">
-            <span class="cs_agr_card_icon"><i class="fa-solid fa-camera"></i></span>
-            <h4>Capture &amp; Log</h4>
-            <p>Snap pictures of crops, pests, or disease with a glance; observations are automatically logged and linked to the specific paddock.</p>
-          </div>
-          <div class="cs_agr_card">
-            <span class="cs_agr_card_icon"><i class="fa-solid fa-hand"></i></span>
-            <h4>Hands-Free Data Entry</h4>
-            <p>Record field notes, activities, and data entries using only your voice, syncing directly into the G.R.O.W Blueprint.</p>
+          <div class="cs_agr_media cs_agr_media_tall">
+            <img src="assets/img/grow-agronomist/4.png" alt="G.R.O.W on Meta Glasses in the field">
           </div>
         </div>
       </div>
@@ -713,5 +894,16 @@
     <script src="assets/js/jquery.slick.min.js"></script>
     <script src="assets/js/odometer.js"></script>
     <script src="assets/js/main.js"></script>
+    <script>
+      // Replicate the floating agri-tech / neural decor on every white slide
+      (function () {
+        var tpl = document.querySelector('.cs_agr_float_layer');
+        if (!tpl) return;
+        document.querySelectorAll('.cs_agr_slide.cs_agr_white').forEach(function (slide) {
+          if (slide.querySelector('.cs_agr_float_layer')) return;
+          slide.appendChild(tpl.cloneNode(true));
+        });
+      })();
+    </script>
   </body>
 </html>
